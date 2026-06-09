@@ -1,0 +1,237 @@
+<Window x:Class="ObjektLab1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Brädhörnan - Labb 2" Height="820" Width="1220"
+        MinHeight="720" MinWidth="1060">
+
+    <Window.Resources>
+        <DataTemplate x:Key="MedlemTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Margin="0,0,6,0" VerticalAlignment="Center">
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill" Value="ForestGreen"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Medlemstyp}" Value="Hedersmedlem">
+                                    <Setter Property="Fill" Value="Goldenrod"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ArSparrad}" Value="True">
+                                    <Setter Property="Fill" Value="DarkRed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <TextBlock Text="{Binding}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="DarkGreen"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Medlemstyp}" Value="Hedersmedlem">
+                                    <Setter Property="Foreground" Value="DarkGoldenrod"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ArSparrad}" Value="True">
+                                    <Setter Property="Foreground" Value="DarkRed"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TraffTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Width="10" Height="10" Margin="0,0,6,0" VerticalAlignment="Center">
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Fill" Value="ForestGreen"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="0">
+                                    <Setter Property="Fill" Value="DarkRed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="1">
+                                    <Setter Property="Fill" Value="DarkOrange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="2">
+                                    <Setter Property="Fill" Value="DarkOrange"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+                <TextBlock Text="{Binding}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="DarkGreen"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="0">
+                                    <Setter Property="Foreground" Value="DarkRed"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="1">
+                                    <Setter Property="Foreground" Value="DarkOrange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding LedigaPlatser}" Value="2">
+                                    <Setter Property="Foreground" Value="DarkOrange"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <DockPanel Margin="10">
+        <Border DockPanel.Dock="Bottom"
+                Margin="0,10,0,0"
+                Padding="8"
+                Background="#F4F4F4"
+                BorderBrush="#D0D0D0"
+                BorderThickness="1">
+            <TextBlock Text="{Binding StatusText}" TextWrapping="Wrap"/>
+        </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="5">
+                <TextBlock Text="Medlemmar" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+
+                <ListBox Height="190"
+                         ItemsSource="{Binding Medlemmar}"
+                         SelectedItem="{Binding ValdMedlem, Mode=TwoWay}"
+                         ItemTemplate="{StaticResource MedlemTemplate}"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                <TextBlock Text="Namn på ny medlem" Margin="0,10,0,5"/>
+                <TextBox Height="26"
+                         Text="{Binding NyMedlemNamn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="E-post" Margin="0,6,0,5"/>
+                <TextBox Height="26"
+                         Text="{Binding NyMedlemEpost, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Mobilnummer" Margin="0,6,0,5"/>
+                <TextBox Height="26"
+                         Text="{Binding NyMedlemMobilnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Content="Registrera ny medlem" Margin="0,4,0,4" Height="28" Command="{Binding RegistreraMedlemCommand}"/>
+                <Button Content="Avregistrera vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvregistreraMedlemCommand}"/>
+                <Button Content="Spärra vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding SparraMedlemCommand}"/>
+                <Button Content="Avspärra vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvsparraMedlemCommand}"/>
+                <Button Content="Visa aktiva medlemmar" Margin="0,4,0,4" Height="28" Command="{Binding VisaAktivaMedlemmarCommand}"/>
+                <Button Content="Sortera medlemmar A-Ö" Margin="0,4,0,4" Height="28" Command="{Binding SorteraMedlemmarCommand}"/>
+
+                <TextBlock Text="Status: grön aktiv, röd spärrad, gul hedersmedlem"
+                           Margin="0,10,0,0"
+                           Foreground="#555"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="5">
+                <TextBlock Text="Spel" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+
+                <ListBox Height="150"
+                         ItemsSource="{Binding Spel}"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                <TextBlock Text="Nytt spel" FontWeight="Bold" Margin="0,10,0,5"/>
+
+                <TextBlock Text="Titel"/>
+                <TextBox Height="26"
+                         Text="{Binding NyttSpelTitel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Kategori" Margin="0,4,0,0"/>
+                <TextBox Height="26"
+                         Text="{Binding NyttSpelKategori, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Min spelare" Margin="0,4,0,0"/>
+                <TextBox Height="26"
+                         Text="{Binding NyttSpelMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Max spelare" Margin="0,4,0,0"/>
+                <TextBox Height="26"
+                         Text="{Binding NyttSpelMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Content="Registrera nytt spel" Margin="0,8,0,4" Height="28" Command="{Binding RegistreraSpelCommand}"/>
+                <Button Content="Gruppera spel efter kategori" Margin="0,8,0,4" Height="28" Command="{Binding GrupperaSpelCommand}"/>
+
+                <TextBlock Text="Grupperade spel" FontWeight="Bold" Margin="0,8,0,5"/>
+                <TextBox Height="132"
+                         IsReadOnly="True"
+                         Text="{Binding GrupperingText}"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"/>
+            </StackPanel>
+
+            <ScrollViewer Grid.Column="2" Margin="5" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <TextBlock Text="Spelträffar" FontWeight="Bold" FontSize="18" Margin="0,0,0,10"/>
+
+                    <ListBox Height="145"
+                             ItemsSource="{Binding Speltraffar}"
+                             SelectedItem="{Binding ValdTraff, Mode=TwoWay}"
+                             ItemTemplate="{StaticResource TraffTemplate}"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                    <TextBlock Text="Ny spelträff" FontWeight="Bold" Margin="0,10,0,5"/>
+
+                    <TextBlock Text="Namn"/>
+                    <TextBox Height="26"
+                             Text="{Binding NyTraffNamn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Plats" Margin="0,4,0,0"/>
+                    <TextBox Height="26"
+                             Text="{Binding NyTraffPlats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Datum och tid, exempel: 2026-05-20 18:00" Margin="0,4,0,0"/>
+                    <TextBox Height="26"
+                             Text="{Binding NyTraffDatumTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Min deltagare" Margin="0,4,0,0"/>
+                    <TextBox Height="26"
+                             Text="{Binding NyTraffMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Max deltagare" Margin="0,4,0,0"/>
+                    <TextBox Height="26"
+                             Text="{Binding NyTraffMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Välj spel" Margin="0,4,0,0"/>
+                    <ComboBox Height="26"
+                              ItemsSource="{Binding Spel}"
+                              SelectedItem="{Binding ValtSpel, Mode=TwoWay}"/>
+
+                    <Button Content="Registrera ny spelträff" Margin="0,8,0,4" Height="28" Command="{Binding RegistreraSpeltraffCommand}"/>
+                    <Button Content="Anmäl vald medlem" Margin="0,8,0,4" Height="28" Command="{Binding AnmalCommand}"/>
+                    <Button Content="Avanmäl vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvanmalCommand}"/>
+                    <Button Content="Visa träffar med lediga platser" Margin="0,4,0,4" Height="28" Command="{Binding VisaLedigaTraffarCommand}"/>
+                    <Button Content="Visa alla träffar" Margin="0,4,0,4" Height="28" Command="{Binding VisaAllaTraffarCommand}"/>
+                    <Button Content="Ta bort vald spelträff" Margin="0,4,0,8" Height="28" Command="{Binding TaBortSpeltraffCommand}"/>
+
+                    <TextBlock Text="Deltagare i vald träff" FontWeight="Bold" Margin="0,8,0,5"/>
+
+                    <ListBox Height="180"
+                             ItemsSource="{Binding Deltagare}"
+                             SelectedItem="{Binding ValdDeltagare, Mode=TwoWay}"
+                             ItemTemplate="{StaticResource MedlemTemplate}"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+                    <TextBlock Text="Status: grön lediga platser, orange få platser kvar, röd fullbokad"
+                               Margin="0,8,0,0"
+                               Foreground="#555"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        </DockPanel>
+    </DockPanel>
+</Window>

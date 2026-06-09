@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="880" viewBox="0 0 1320 880">
+  <style>
+    .box { fill: #fff; stroke: #222; stroke-width: 2; }
+    .head { fill: #e8f0fe; stroke: #222; stroke-width: 2; }
+    .title { font: bold 18px Arial, sans-serif; }
+    .text { font: 14px Arial, sans-serif; }
+    .small { font: 13px Arial, sans-serif; }
+    .line { stroke: #222; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .label { font: 13px Arial, sans-serif; fill: #111; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#222" />
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="title">Klassdiagram - Brädhörnan Labb 2</text>
+
+  <g transform="translate(40 80)">
+    <rect class="box" width="260" height="250"/>
+    <rect class="head" width="260" height="42"/>
+    <text x="78" y="27" class="title">Medlem</text>
+    <text x="14" y="70" class="text">+ Id: int</text>
+    <text x="14" y="95" class="text">+ Medlemsnummer: int</text>
+    <text x="14" y="120" class="text">+ Namn: string</text>
+    <text x="14" y="145" class="text">+ Epost: string</text>
+    <text x="14" y="170" class="text">+ Mobilnummer: string</text>
+    <text x="14" y="195" class="text">+ ArSparrad: bool</text>
+    <text x="14" y="220" class="text">+ Speltraffar: List&lt;SpelTraff&gt;</text>
+    <line x1="0" y1="232" x2="260" y2="232" stroke="#222"/>
+    <text x="14" y="255" class="small">+ Sparra()</text>
+    <text x="120" y="255" class="small">+ Avsparra()</text>
+    <text x="14" y="278" class="small">+ KanAnmalasTillTraff()</text>
+  </g>
+
+  <g transform="translate(390 80)">
+    <rect class="box" width="260" height="250"/>
+    <rect class="head" width="260" height="42"/>
+    <text x="108" y="27" class="title">Spel</text>
+    <text x="14" y="70" class="text">+ Id: int</text>
+    <text x="14" y="95" class="text">+ Titel: string</text>
+    <text x="14" y="120" class="text">+ Kategori: string</text>
+    <text x="14" y="145" class="text">+ MinSpelare: int</text>
+    <text x="14" y="170" class="text">+ MaxSpelare: int</text>
+    <text x="14" y="195" class="text">+ Speltraffar: List&lt;SpelTraff&gt;</text>
+    <line x1="0" y1="210" x2="260" y2="210" stroke="#222"/>
+    <text x="14" y="235" class="text">+ ToString(): string</text>
+  </g>
+
+  <g transform="translate(40 350)">
+    <rect class="box" width="260" height="95"/>
+    <rect class="head" width="260" height="42"/>
+    <text x="65" y="27" class="title">StandardMedlem</text>
+    <text x="14" y="70" class="text">+ Medlemstyp: string</text>
+  </g>
+
+  <g transform="translate(390 350)">
+    <rect class="box" width="260" height="95"/>
+    <rect class="head" width="260" height="42"/>
+    <text x="76" y="27" class="title">HedersMedlem</text>
+    <text x="14" y="70" class="text">+ Medlemstyp: string</text>
+  </g>
+
+  <g transform="translate(760 70)">
+    <rect class="box" width="360" height="330"/>
+    <rect class="head" width="360" height="42"/>
+    <text x="132" y="27" class="title">SpelTraff</text>
+    <text x="14" y="70" class="text">+ Id: int</text>
+    <text x="14" y="95" class="text">+ Namn: string</text>
+    <text x="14" y="120" class="text">+ Plats: string</text>
+    <text x="14" y="145" class="text">+ DatumTid: DateTime</text>
+    <text x="14" y="170" class="text">+ MinDeltagare: int</text>
+    <text x="14" y="195" class="text">+ MaxDeltagare: int</text>
+    <text x="14" y="220" class="text">+ Spel: Spel</text>
+    <text x="14" y="245" class="text">+ Deltagare: List&lt;Medlem&gt;</text>
+    <text x="14" y="270" class="text">+ LedigaPlatser: int</text>
+    <line x1="0" y1="286" x2="360" y2="286" stroke="#222"/>
+    <text x="14" y="310" class="text">+ Anmal(medlem): void</text>
+  </g>
+
+  <g transform="translate(40 500)">
+    <rect class="box" width="300" height="260"/>
+    <rect class="head" width="300" height="42"/>
+    <text x="112" y="27" class="title">Forening</text>
+    <text x="14" y="70" class="text">+ Medlemmar: List&lt;Medlem&gt;</text>
+    <text x="14" y="95" class="text">+ Spel: List&lt;Spel&gt;</text>
+    <text x="14" y="120" class="text">+ Speltraffar: List&lt;SpelTraff&gt;</text>
+    <line x1="0" y1="140" x2="300" y2="140" stroke="#222"/>
+    <text x="14" y="165" class="small">+ AvregistreraMedlem(...)</text>
+    <text x="14" y="188" class="small">+ SparraMedlem(...)</text>
+    <text x="14" y="211" class="small">+ SorteraMedlemmarEfterNamn()</text>
+    <text x="14" y="234" class="small">+ GrupperaSpelEfterKategori()</text>
+  </g>
+
+  <g transform="translate(440 500)">
+    <rect class="box" width="320" height="260"/>
+    <rect class="head" width="320" height="42"/>
+    <text x="91" y="27" class="title">MainViewModel</text>
+    <text x="14" y="70" class="text">+ Medlemmar: ObservableCollection</text>
+    <text x="14" y="95" class="text">+ Spel: ObservableCollection</text>
+    <text x="14" y="120" class="text">+ Speltraffar: ObservableCollection</text>
+    <text x="14" y="145" class="text">+ ValdMedlem: Medlem</text>
+    <text x="14" y="170" class="text">+ ValdTraff: SpelTraff</text>
+    <line x1="0" y1="190" x2="320" y2="190" stroke="#222"/>
+    <text x="14" y="215" class="text">+ LaddaAsync(): Task</text>
+    <text x="14" y="240" class="text">+ Commands</text>
+  </g>
+
+  <g transform="translate(860 500)">
+    <rect class="box" width="320" height="220"/>
+    <rect class="head" width="320" height="42"/>
+    <text x="88" y="27" class="title">ForeningService</text>
+    <text x="14" y="70" class="text">+ StartaDatabasAsync()</text>
+    <text x="14" y="95" class="text">+ HamtaMedlemmarAsync()</text>
+    <text x="14" y="120" class="text">+ RegistreraMedlemAsync()</text>
+    <text x="14" y="145" class="text">+ AnmalAsync()</text>
+    <text x="14" y="170" class="text">+ AvanmalAsync()</text>
+  </g>
+
+  <g transform="translate(860 735)">
+    <rect class="box" width="320" height="130"/>
+    <rect class="head" width="320" height="42"/>
+    <text x="76" y="27" class="title">ForeningDbContext</text>
+    <text x="14" y="70" class="text">+ DbSet&lt;Medlem&gt;</text>
+    <text x="14" y="95" class="text">+ DbSet&lt;Spel&gt;</text>
+    <text x="14" y="120" class="text">+ DbSet&lt;SpelTraff&gt;</text>
+  </g>
+
+  <path class="line" d="M300 205 C450 205 600 205 760 230"/>
+  <text x="365" y="190" class="label">0..*</text>
+  <text x="710" y="218" class="label">0..*</text>
+  <text x="505" y="190" class="label">Medlem deltar i SpelTraff</text>
+
+  <path class="line" d="M650 200 C690 200 715 200 760 205"/>
+  <text x="665" y="180" class="label">1 spel</text>
+
+  <path class="line" d="M170 330 L170 350"/>
+  <text x="183" y="342" class="label">ärver</text>
+
+  <path class="line" d="M210 330 C300 340 400 340 485 350"/>
+  <text x="325" y="330" class="label">ärver</text>
+
+  <path class="line" d="M340 560 C375 560 405 560 440 560"/>
+  <text x="355" y="545" class="label">använder</text>
+
+  <path class="line" d="M760 560 C795 560 825 560 860 560"/>
+  <text x="780" y="545" class="label">anropar</text>
+
+  <path class="line" d="M1020 690 L1020 735"/>
+  <text x="1035" y="720" class="label">EF Core</text>
+
+  <path class="line" d="M970 735 C760 705 575 360 520 330"/>
+  <text x="695" y="565" class="label">DbSet&lt;Spel&gt;</text>
+
+  <path class="line" d="M1060 735 C1130 650 1150 500 1120 390"/>
+  <text x="1082" y="600" class="label">DbSet&lt;SpelTraff&gt;</text>
+
+  <path class="line" d="M915 735 C630 700 250 430 170 330"/>
+  <text x="390" y="620" class="label">DbSet&lt;Medlem&gt;</text>
+</svg>
