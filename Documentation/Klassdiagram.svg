@@ -148,39 +148,24 @@
 
   <!-- Exact domain relations -->
   <path class="assoc" d="M410 205 H560"/>
-  <g transform="translate(430 160)">
-    <rect class="labelBox" width="110" height="70" rx="4"/>
-    <text class="label" x="16" y="24">Forening 1</text>
-    <text class="label" x="16" y="48">0..* Medlem</text>
-  </g>
+  <text class="label" x="430" y="196">1</text>
+  <text class="label" x="520" y="196">0..*</text>
 
   <path class="assoc" d="M410 400 H500 V815 H560"/>
-  <g transform="translate(430 705)">
-    <rect class="labelBox" width="105" height="70" rx="4"/>
-    <text class="label" x="14" y="24">Forening 1</text>
-    <text class="label" x="14" y="48">0..* Spel</text>
-  </g>
+  <text class="label" x="430" y="392">1</text>
+  <text class="label" x="520" y="806">0..*</text>
 
   <path class="assoc" d="M410 250 H500 V125 H1315 V345"/>
-  <g transform="translate(920 120)">
-    <rect class="labelBox" width="135" height="70" rx="4"/>
-    <text class="label" x="14" y="24">Forening 1</text>
-    <text class="label" x="14" y="48">0..* SpelTraff</text>
-  </g>
+  <text class="label" x="430" y="242">1</text>
+  <text class="label" x="1325" y="334">0..*</text>
 
   <path class="assoc" d="M930 815 H1040 V560 H1110"/>
-  <g transform="translate(960 705)">
-    <rect class="labelBox" width="130" height="70" rx="4"/>
-    <text class="label" x="14" y="24">Spel 1</text>
-    <text class="label" x="14" y="48">0..* SpelTraff</text>
-  </g>
+  <text class="label" x="950" y="806">1</text>
+  <text class="label" x="1070" y="552">0..*</text>
 
   <path class="assoc" d="M930 420 H1110"/>
-  <g transform="translate(968 352)">
-    <rect class="labelBox" width="135" height="70" rx="4"/>
-    <text class="label" x="13" y="24">Medlem 0..*</text>
-    <text class="label" x="13" y="48">0..* SpelTraff</text>
-  </g>
+  <text class="label" x="950" y="411">0..*</text>
+  <text class="label" x="1070" y="411">0..*</text>
 
   <!-- Inheritance and dependency relations -->
   <path class="inherit" d="M235 1010 V965"/>
