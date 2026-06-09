@@ -155,9 +155,9 @@
   <text class="label" x="430" y="392">1</text>
   <text class="label" x="520" y="806">0..*</text>
 
-  <path class="assoc" d="M410 250 H500 V125 H1245 V345"/>
-  <text class="label" x="430" y="242">1</text>
-  <text class="label" x="1255" y="334">0..*</text>
+  <path class="assoc" d="M410 330 H500 V545 H1020 V365 H1040"/>
+  <text class="label" x="430" y="322">1</text>
+  <text class="label" x="1000" y="358">0..*</text>
 
   <path class="assoc" d="M930 815 H990 V560 H1040"/>
   <text class="label" x="950" y="806">1</text>
