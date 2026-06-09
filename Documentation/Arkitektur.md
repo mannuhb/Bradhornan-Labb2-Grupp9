@@ -40,7 +40,7 @@ Varje medlem har ett unikt medlemsnummer som fungerar som medlems-id. Unika fäl
 
 Förnamn och efternamn valideras också som affärsregler i domänmodellen. De får bara innehålla bokstäver, mellanslag och bindestreck, vilket hindrar symboler i medlemsnamn.
 
-Spel kan uppdateras genom en metod i domänklassen `Spel`, vilket gör att ändringar av titel, kategori och antal spelare fortfarande går genom klassens validering. Spelträffar skapas via ett kalenderfält för datum och ett separat tidsfält, vilket ger ett tydligare och mer användarvänligt arbetsflöde än att skriva hela datum/tid manuellt.
+Spel kan uppdateras genom en metod i domänklassen `Spel`, vilket gör att ändringar av titel, kategori och antal spelare fortfarande går genom klassens validering. Spelträffar skapas via ett kalenderfält för datum och en tidslista, vilket ger ett tydligare och mer användarvänligt arbetsflöde än att skriva hela datum/tid manuellt. Systemet stoppar också spelträffar som ligger i dåtid.
 
 ## Designval
 

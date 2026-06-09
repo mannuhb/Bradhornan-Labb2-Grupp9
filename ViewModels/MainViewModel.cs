@@ -36,6 +36,39 @@ namespace ObjektLab1.ViewModels
         public ObservableCollection<Spel> Spel { get; } = new();
         public ObservableCollection<SpelTraff> Speltraffar { get; } = new();
         public ObservableCollection<Medlem> Deltagare { get; } = new();
+        public DateTime MinTraffDatum { get; } = DateTime.Today;
+        public ObservableCollection<string> Tider { get; } = new()
+        {
+            "08:00",
+            "08:30",
+            "09:00",
+            "09:30",
+            "10:00",
+            "10:30",
+            "11:00",
+            "11:30",
+            "12:00",
+            "12:30",
+            "13:00",
+            "13:30",
+            "14:00",
+            "14:30",
+            "15:00",
+            "15:30",
+            "16:00",
+            "16:30",
+            "17:00",
+            "17:30",
+            "18:00",
+            "18:30",
+            "19:00",
+            "19:30",
+            "20:00",
+            "20:30",
+            "21:00",
+            "21:30",
+            "22:00"
+        };
         public ObservableCollection<string> Roller { get; } = new()
         {
             "Spelare",
@@ -404,6 +437,9 @@ namespace ObjektLab1.ViewModels
                     throw new InvalidOperationException("Tid måste skrivas korrekt, till exempel 18:00.");
 
                 var datumTid = NyTraffDatum.Value.Date.Add(tid);
+
+                if (datumTid <= DateTime.Now)
+                    throw new InvalidOperationException("Spelträffen måste ligga i framtiden.");
 
                 var min = LasHeltal(NyTraffMin, "Min deltagare");
                 var max = LasHeltal(NyTraffMax, "Max deltagare");

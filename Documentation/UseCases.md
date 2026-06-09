@@ -39,9 +39,10 @@ Aktör: Administratör/Föreningsansvarig
 2. Användaren väljer ett spel.
 3. Användaren klickar på "Registrera ny spelträff".
 4. Systemet kontrollerar att inmatningen är giltig.
-5. Systemet kontrollerar att träffens min- och maxdeltagare passar spelets regler.
-6. Systemet sparar spelträffen i databasen.
-7. Listan med spelträffar uppdateras.
+5. Systemet kontrollerar att datum och tid ligger i framtiden.
+6. Systemet kontrollerar att träffens min- och maxdeltagare passar spelets regler.
+7. Systemet sparar spelträffen i databasen.
+8. Listan med spelträffar uppdateras.
 
 ## Use case 4 - Uppdatera spel
 

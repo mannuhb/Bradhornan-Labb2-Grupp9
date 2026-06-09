@@ -216,11 +216,13 @@
 
                     <TextBlock Text="Datum" Margin="0,4,0,0"/>
                     <DatePicker Height="26"
+                                DisplayDateStart="{Binding MinTraffDatum}"
                                 SelectedDate="{Binding NyTraffDatum, Mode=TwoWay}"/>
 
-                    <TextBlock Text="Tid, exempel: 18:00" Margin="0,4,0,0"/>
-                    <TextBox Height="26"
-                             Text="{Binding NyTraffTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Tid" Margin="0,4,0,0"/>
+                    <ComboBox Height="26"
+                              ItemsSource="{Binding Tider}"
+                              SelectedItem="{Binding NyTraffTid, Mode=TwoWay}"/>
 
                     <TextBlock Text="Min deltagare" Margin="0,4,0,0"/>
                     <TextBox Height="26"

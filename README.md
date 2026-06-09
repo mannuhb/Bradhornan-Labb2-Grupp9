@@ -70,6 +70,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Medlemsnummer, e-postadress och mobilnummer måste vara unika.
 - Mobilnummer måste bestå av exakt 10 siffror och börja med 0.
 - Spelträffar skapas med valt datum från kalender och separat tid.
+- Spelträffar får inte skapas i dåtid.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
 - En spärrad medlem kan inte anmälas till spelträff.
