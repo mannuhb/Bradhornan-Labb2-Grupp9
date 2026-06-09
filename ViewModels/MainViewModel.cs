@@ -31,6 +31,7 @@ namespace ObjektLab1.ViewModels
         private string _nyTraffMin = string.Empty;
         private string _nyTraffMax = string.Empty;
         private string _grupperingText = string.Empty;
+        private string _traffValideringText = "Välj en spelträff för att se validering.";
 
         public ObservableCollection<Medlem> Medlemmar { get; } = new();
         public ObservableCollection<Spel> Spel { get; } = new();
@@ -272,6 +273,12 @@ namespace ObjektLab1.ViewModels
             set => SetProperty(ref _grupperingText, value);
         }
 
+        public string TraffValideringText
+        {
+            get => _traffValideringText;
+            set => SetProperty(ref _traffValideringText, value);
+        }
+
         public async Task LaddaAsync()
         {
             try
@@ -303,9 +310,12 @@ namespace ObjektLab1.ViewModels
 
         private async Task LaddaTraffarAsync(bool baraLediga)
         {
+            var valdTraffId = ValdTraff?.Id;
             var traffar = await _service.HamtaSpeltraffarAsync(baraLediga);
             FyllSamling(Speltraffar, traffar);
-            ValdTraff = null;
+            ValdTraff = valdTraffId.HasValue
+                ? Speltraffar.FirstOrDefault(t => t.Id == valdTraffId.Value)
+                : null;
             StatusText = baraLediga ? "Visar spelträffar med lediga platser." : "Visar alla spelträffar.";
         }
 
@@ -525,10 +535,39 @@ namespace ObjektLab1.ViewModels
             Deltagare.Clear();
 
             if (ValdTraff == null)
+            {
+                TraffValideringText = "Välj en spelträff för att se validering.";
                 return;
+            }
 
             foreach (var medlem in ValdTraff.Deltagare.OrderBy(m => m.Namn).ThenBy(m => m.Efternamn))
                 Deltagare.Add(medlem);
+
+            UppdateraTraffValidering();
+        }
+
+        private void UppdateraTraffValidering()
+        {
+            if (ValdTraff == null)
+            {
+                TraffValideringText = "Välj en spelträff för att se validering.";
+                return;
+            }
+
+            var status = ValdTraff.LedigaPlatser == 0
+                ? "Fullbokad"
+                : ValdTraff.Deltagare.Count < ValdTraff.MinDeltagare
+                    ? "Behöver fler deltagare"
+                    : "Redo att genomföras";
+
+            TraffValideringText =
+                $"Spel: {ValdTraff.Spel.Titel}\n" +
+                $"Kategori: {ValdTraff.Spel.Kategori}\n" +
+                $"Spelets krav: {ValdTraff.Spel.MinSpelare}-{ValdTraff.Spel.MaxSpelare} spelare\n" +
+                $"Träffens krav: {ValdTraff.MinDeltagare}-{ValdTraff.MaxDeltagare} deltagare\n" +
+                $"Anmälda: {ValdTraff.Deltagare.Count}/{ValdTraff.MaxDeltagare}\n" +
+                $"Lediga platser: {ValdTraff.LedigaPlatser}\n" +
+                $"Status: {status}";
         }
 
         private void UppdateraCommandStatus()

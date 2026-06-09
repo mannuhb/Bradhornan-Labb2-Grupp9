@@ -63,9 +63,10 @@ Aktör: Administratör/Föreningsansvarig
 
 1. Användaren väljer en medlem.
 2. Användaren väljer en spelträff.
-3. Användaren klickar på "Anmäl vald medlem".
-4. Systemet kontrollerar att medlemmen inte är spärrad.
-5. Systemet kontrollerar att medlemmen inte redan är anmäld.
-6. Systemet kontrollerar att spelträffen inte är full.
-7. Systemet sparar anmälan i databasen.
-8. Deltagarlistan och lediga platser uppdateras.
+3. Systemet visar validering för vald spelträff, till exempel spel, kategori, deltagarkrav och lediga platser.
+4. Användaren klickar på "Anmäl medlem till spelträff".
+5. Systemet kontrollerar att medlemmen inte är spärrad.
+6. Systemet kontrollerar att medlemmen inte redan är anmäld.
+7. Systemet kontrollerar att spelträffen inte är full.
+8. Systemet sparar anmälan i databasen.
+9. Deltagarlistan, lediga platser och valideringsrutan uppdateras.

@@ -216,7 +216,7 @@
 
                     <TextBlock Text="Datum" Margin="0,4,0,0"/>
                     <DatePicker Height="26"
-                                DisplayDateStart="{Binding MinTraffDatum}"
+                                DisplayDateStart="{Binding MinTraffDatum, Mode=OneWay}"
                                 SelectedDate="{Binding NyTraffDatum, Mode=TwoWay}"/>
 
                     <TextBlock Text="Tid" Margin="0,4,0,0"/>
@@ -238,11 +238,28 @@
                               SelectedItem="{Binding ValtSpel, Mode=TwoWay}"/>
 
                     <Button Content="Registrera ny spelträff" Margin="0,8,0,4" Height="28" Command="{Binding RegistreraSpeltraffCommand}"/>
-                    <Button Content="Anmäl vald medlem" Margin="0,8,0,4" Height="28" Command="{Binding AnmalCommand}"/>
+                    <GroupBox Header="Anmäl medlem till vald spelträff" Margin="0,8,0,4" Padding="6">
+                        <StackPanel>
+                            <TextBlock Text="Registrerade medlemmar"/>
+                            <ComboBox Height="26"
+                                      Margin="0,4,0,4"
+                                      ItemsSource="{Binding Medlemmar}"
+                                      SelectedItem="{Binding ValdMedlem, Mode=TwoWay}"/>
+                            <Button Content="Anmäl medlem till spelträff" Height="28" Command="{Binding AnmalCommand}"/>
+                        </StackPanel>
+                    </GroupBox>
                     <Button Content="Avanmäl vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvanmalCommand}"/>
                     <Button Content="Visa träffar med lediga platser" Margin="0,4,0,4" Height="28" Command="{Binding VisaLedigaTraffarCommand}"/>
                     <Button Content="Visa alla träffar" Margin="0,4,0,4" Height="28" Command="{Binding VisaAllaTraffarCommand}"/>
                     <Button Content="Ta bort vald spelträff" Margin="0,4,0,8" Height="28" Command="{Binding TaBortSpeltraffCommand}"/>
+
+                    <GroupBox Header="Validering av vald spelträff" Margin="0,4,0,8" Padding="6">
+                        <TextBox Text="{Binding TraffValideringText}"
+                                 IsReadOnly="True"
+                                 MinHeight="118"
+                                 TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Auto"/>
+                    </GroupBox>
 
                     <TextBlock Text="Deltagare i vald träff" FontWeight="Bold" Margin="0,8,0,5"/>
 

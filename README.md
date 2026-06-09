@@ -55,6 +55,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Uppdatera valt spel.
 - Registrera ny spelträff.
 - Anmäla vald medlem till vald spelträff.
+- Anmäla registrerade medlemmar direkt från spelträffsdelen.
 - Avanmäla deltagare från spelträff.
 - Ta bort vald spelträff.
 - Visa aktiva medlemmar.
@@ -71,6 +72,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Mobilnummer måste bestå av exakt 10 siffror och börja med 0.
 - Spelträffar skapas med valt datum från kalender och separat tid.
 - Spelträffar får inte skapas i dåtid.
+- Vald spelträff visar validering med spel, kategori, deltagarkrav, lediga platser och status.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
 - En spärrad medlem kan inte anmälas till spelträff.
