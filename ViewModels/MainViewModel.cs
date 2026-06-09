@@ -11,6 +11,7 @@ namespace ObjektLab1.ViewModels
 
         private Medlem? _valdMedlem;
         private Medlem? _valdDeltagare;
+        private Spel? _valtSpelForRedigering;
         private Spel? _valtSpel;
         private SpelTraff? _valdTraff;
         private string _statusText = "Redo.";
@@ -25,7 +26,8 @@ namespace ObjektLab1.ViewModels
         private string _nyttSpelMax = string.Empty;
         private string _nyTraffNamn = string.Empty;
         private string _nyTraffPlats = string.Empty;
-        private string _nyTraffDatumTid = DateTime.Today.AddHours(18).ToString("yyyy-MM-dd HH:mm");
+        private DateTime? _nyTraffDatum = DateTime.Today;
+        private string _nyTraffTid = "18:00";
         private string _nyTraffMin = string.Empty;
         private string _nyTraffMax = string.Empty;
         private string _grupperingText = string.Empty;
@@ -52,6 +54,7 @@ namespace ObjektLab1.ViewModels
             VisaAktivaMedlemmarCommand = new AsyncRelayCommand(VisaAktivaMedlemmarAsync);
             SorteraMedlemmarCommand = new AsyncRelayCommand(SorteraMedlemmarAsync);
             RegistreraSpelCommand = new AsyncRelayCommand(RegistreraSpelAsync);
+            UppdateraSpelCommand = new AsyncRelayCommand(UppdateraSpelAsync, () => ValtSpelForRedigering != null);
             GrupperaSpelCommand = new RelayCommand(GrupperaSpel);
             RegistreraSpeltraffCommand = new AsyncRelayCommand(RegistreraSpeltraffAsync);
             AnmalCommand = new AsyncRelayCommand(AnmalAsync, () => ValdMedlem != null && ValdTraff != null);
@@ -70,6 +73,7 @@ namespace ObjektLab1.ViewModels
         public AsyncRelayCommand VisaAktivaMedlemmarCommand { get; }
         public AsyncRelayCommand SorteraMedlemmarCommand { get; }
         public AsyncRelayCommand RegistreraSpelCommand { get; }
+        public AsyncRelayCommand UppdateraSpelCommand { get; }
         public RelayCommand GrupperaSpelCommand { get; }
         public AsyncRelayCommand RegistreraSpeltraffCommand { get; }
         public AsyncRelayCommand AnmalCommand { get; }
@@ -105,6 +109,19 @@ namespace ObjektLab1.ViewModels
         {
             get => _valtSpel;
             set => SetProperty(ref _valtSpel, value);
+        }
+
+        public Spel? ValtSpelForRedigering
+        {
+            get => _valtSpelForRedigering;
+            set
+            {
+                if (SetProperty(ref _valtSpelForRedigering, value))
+                {
+                    FyllSpelformularFranValtSpel();
+                    UppdateraCommandStatus();
+                }
+            }
         }
 
         public SpelTraff? ValdTraff
@@ -192,10 +209,16 @@ namespace ObjektLab1.ViewModels
             set => SetProperty(ref _nyTraffPlats, value);
         }
 
-        public string NyTraffDatumTid
+        public DateTime? NyTraffDatum
         {
-            get => _nyTraffDatumTid;
-            set => SetProperty(ref _nyTraffDatumTid, value);
+            get => _nyTraffDatum;
+            set => SetProperty(ref _nyTraffDatum, value);
+        }
+
+        public string NyTraffTid
+        {
+            get => _nyTraffTid;
+            set => SetProperty(ref _nyTraffTid, value);
         }
 
         public string NyTraffMin
@@ -349,6 +372,24 @@ namespace ObjektLab1.ViewModels
             });
         }
 
+        private async Task UppdateraSpelAsync()
+        {
+            if (ValtSpelForRedigering == null)
+                return;
+
+            await HanteraFelAsync(async () =>
+            {
+                var min = LasHeltal(NyttSpelMin, "Min spelare");
+                var max = LasHeltal(NyttSpelMax, "Max spelare");
+                var spelId = ValtSpelForRedigering.Id;
+
+                await _service.UppdateraSpelAsync(spelId, NyttSpelTitel, NyttSpelKategori, min, max);
+                await LaddaSpelAsync();
+                ValtSpelForRedigering = Spel.FirstOrDefault(s => s.Id == spelId);
+                StatusText = "Spelet har uppdaterats.";
+            });
+        }
+
         private async Task RegistreraSpeltraffAsync()
         {
             await HanteraFelAsync(async () =>
@@ -356,8 +397,13 @@ namespace ObjektLab1.ViewModels
                 if (ValtSpel == null)
                     throw new InvalidOperationException("Välj ett spel.");
 
-                if (!DateTime.TryParse(NyTraffDatumTid, out var datumTid))
-                    throw new InvalidOperationException("Datum och tid måste skrivas korrekt.");
+                if (NyTraffDatum == null)
+                    throw new InvalidOperationException("Välj datum för spelträffen.");
+
+                if (!TimeSpan.TryParse(NyTraffTid, out var tid))
+                    throw new InvalidOperationException("Tid måste skrivas korrekt, till exempel 18:00.");
+
+                var datumTid = NyTraffDatum.Value.Date.Add(tid);
 
                 var min = LasHeltal(NyTraffMin, "Min deltagare");
                 var max = LasHeltal(NyTraffMax, "Max deltagare");
@@ -366,7 +412,8 @@ namespace ObjektLab1.ViewModels
 
                 NyTraffNamn = string.Empty;
                 NyTraffPlats = string.Empty;
-                NyTraffDatumTid = DateTime.Today.AddHours(18).ToString("yyyy-MM-dd HH:mm");
+                NyTraffDatum = DateTime.Today;
+                NyTraffTid = "18:00";
                 NyTraffMin = string.Empty;
                 NyTraffMax = string.Empty;
                 ValtSpel = null;
@@ -452,6 +499,7 @@ namespace ObjektLab1.ViewModels
         {
             AvregistreraMedlemCommand.RaiseCanExecuteChanged();
             UppdateraMedlemCommand.RaiseCanExecuteChanged();
+            UppdateraSpelCommand.RaiseCanExecuteChanged();
             SparraMedlemCommand.RaiseCanExecuteChanged();
             AvsparraMedlemCommand.RaiseCanExecuteChanged();
             AnmalCommand.RaiseCanExecuteChanged();
@@ -490,6 +538,17 @@ namespace ObjektLab1.ViewModels
             NyMedlemEpost = string.Empty;
             NyMedlemMobilnummer = string.Empty;
             NyMedlemRoll = "Spelare";
+        }
+
+        private void FyllSpelformularFranValtSpel()
+        {
+            if (ValtSpelForRedigering == null)
+                return;
+
+            NyttSpelTitel = ValtSpelForRedigering.Titel;
+            NyttSpelKategori = ValtSpelForRedigering.Kategori;
+            NyttSpelMin = ValtSpelForRedigering.MinSpelare.ToString();
+            NyttSpelMax = ValtSpelForRedigering.MaxSpelare.ToString();
         }
 
         private static int LasHeltal(string text, string faltNamn)

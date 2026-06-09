@@ -106,6 +106,16 @@ namespace ObjektLab1.Services
             return spel;
         }
 
+        public async Task UppdateraSpelAsync(int spelId, string titel, string kategori, int minSpelare, int maxSpelare)
+        {
+            using var db = new ForeningDbContext();
+            var spel = await db.Spel.FindAsync(spelId)
+                ?? throw new InvalidOperationException("Välj ett spel.");
+
+            spel.Uppdatera(titel, kategori, minSpelare, maxSpelare);
+            await db.SaveChangesAsync();
+        }
+
         public async Task<SpelTraff> RegistreraSpeltraffAsync(string namn, string plats, int minDeltagare, int maxDeltagare, DateTime datumTid, int spelId)
         {
             using var db = new ForeningDbContext();

@@ -161,9 +161,10 @@
 
                 <ListBox Height="150"
                          ItemsSource="{Binding Spel}"
+                         SelectedItem="{Binding ValtSpelForRedigering, Mode=TwoWay}"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-                <TextBlock Text="Nytt spel" FontWeight="Bold" Margin="0,10,0,5"/>
+                <TextBlock Text="Nytt eller valt spel" FontWeight="Bold" Margin="0,10,0,5"/>
 
                 <TextBlock Text="Titel"/>
                 <TextBox Height="26"
@@ -182,6 +183,7 @@
                          Text="{Binding NyttSpelMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Registrera nytt spel" Margin="0,8,0,4" Height="28" Command="{Binding RegistreraSpelCommand}"/>
+                <Button Content="Uppdatera valt spel" Margin="0,4,0,4" Height="28" Command="{Binding UppdateraSpelCommand}"/>
                 <Button Content="Gruppera spel efter kategori" Margin="0,8,0,4" Height="28" Command="{Binding GrupperaSpelCommand}"/>
 
                 <TextBlock Text="Grupperade spel" FontWeight="Bold" Margin="0,8,0,5"/>
@@ -212,9 +214,13 @@
                     <TextBox Height="26"
                              Text="{Binding NyTraffPlats, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBlock Text="Datum och tid, exempel: 2026-05-20 18:00" Margin="0,4,0,0"/>
+                    <TextBlock Text="Datum" Margin="0,4,0,0"/>
+                    <DatePicker Height="26"
+                                SelectedDate="{Binding NyTraffDatum, Mode=TwoWay}"/>
+
+                    <TextBlock Text="Tid, exempel: 18:00" Margin="0,4,0,0"/>
                     <TextBox Height="26"
-                             Text="{Binding NyTraffDatumTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding NyTraffTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Min deltagare" Margin="0,4,0,0"/>
                     <TextBox Height="26"

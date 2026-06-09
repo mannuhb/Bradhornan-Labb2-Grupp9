@@ -52,6 +52,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Uppdatera vald medlems uppgifter.
 - Spärra och avspärra medlem.
 - Registrera nytt spel.
+- Uppdatera valt spel.
 - Registrera ny spelträff.
 - Anmäla vald medlem till vald spelträff.
 - Avanmäla deltagare från spelträff.
@@ -68,6 +69,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Förnamn och efternamn får bara innehålla bokstäver, mellanslag och bindestreck.
 - Medlemsnummer, e-postadress och mobilnummer måste vara unika.
 - Mobilnummer måste bestå av exakt 10 siffror och börja med 0.
+- Spelträffar skapas med valt datum från kalender och separat tid.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
 - En spärrad medlem kan inte anmälas till spelträff.

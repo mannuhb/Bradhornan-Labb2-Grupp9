@@ -19,6 +19,26 @@ namespace ObjektLab1.Models
 
         public Spel(string titel, string kategori, int minSpelare, int maxSpelare)
         {
+            Validera(titel, kategori, minSpelare, maxSpelare);
+
+            Titel = titel.Trim();
+            Kategori = kategori.Trim();
+            MinSpelare = minSpelare;
+            MaxSpelare = maxSpelare;
+        }
+
+        public void Uppdatera(string titel, string kategori, int minSpelare, int maxSpelare)
+        {
+            Validera(titel, kategori, minSpelare, maxSpelare);
+
+            Titel = titel.Trim();
+            Kategori = kategori.Trim();
+            MinSpelare = minSpelare;
+            MaxSpelare = maxSpelare;
+        }
+
+        private static void Validera(string titel, string kategori, int minSpelare, int maxSpelare)
+        {
             if (string.IsNullOrWhiteSpace(titel))
                 throw new ArgumentException("Titel måste anges.");
 
@@ -27,11 +47,6 @@ namespace ObjektLab1.Models
 
             if (minSpelare <= 0 || maxSpelare < minSpelare)
                 throw new ArgumentException("Fel antal spelare.");
-
-            Titel = titel;
-            Kategori = kategori;
-            MinSpelare = minSpelare;
-            MaxSpelare = maxSpelare;
         }
 
         public override string ToString()

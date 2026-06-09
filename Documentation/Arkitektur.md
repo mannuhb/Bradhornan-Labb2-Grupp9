@@ -40,6 +40,8 @@ Varje medlem har ett unikt medlemsnummer som fungerar som medlems-id. Unika fäl
 
 Förnamn och efternamn valideras också som affärsregler i domänmodellen. De får bara innehålla bokstäver, mellanslag och bindestreck, vilket hindrar symboler i medlemsnamn.
 
+Spel kan uppdateras genom en metod i domänklassen `Spel`, vilket gör att ändringar av titel, kategori och antal spelare fortfarande går genom klassens validering. Spelträffar skapas via ett kalenderfält för datum och ett separat tidsfält, vilket ger ett tydligare och mer användarvänligt arbetsflöde än att skriva hela datum/tid manuellt.
+
 ## Designval
 
 Appen använder en liten egen implementation av `RelayCommand` och `AsyncRelayCommand` i stället för CommunityToolkit.Mvvm, eftersom det räcker för projektets omfattning och gör commands lätta att förklara vid redovisning.
