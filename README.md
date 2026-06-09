@@ -74,6 +74,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Spelträffar skapas med valt datum från kalender och separat tid.
 - Spelträffar får inte skapas i dåtid.
 - Vald spelträff visar validering med spel, kategori, deltagarkrav, lediga platser och status.
+- När en spelträff tas bort raderas den permanent från databasen. Nuvarande version sparar inte historik över raderade spelträffar.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
 - En spärrad medlem kan inte anmälas till spelträff.

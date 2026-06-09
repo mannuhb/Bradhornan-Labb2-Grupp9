@@ -70,3 +70,16 @@ Aktör: Administratör/Föreningsansvarig
 7. Systemet kontrollerar att spelträffen inte är full.
 8. Systemet sparar anmälan i databasen.
 9. Deltagarlistan, lediga platser och valideringsrutan uppdateras.
+
+## Use case 6 - Ta bort spelträff
+
+Aktör: Administratör/Föreningsansvarig
+
+1. Användaren väljer en spelträff i listan.
+2. Användaren klickar på "Ta bort vald spelträff".
+3. Systemet kontrollerar att en spelträff är vald.
+4. Systemet tar bort spelträffen från databasen.
+5. Listan med spelträffar uppdateras.
+6. Systemet visar återkoppling om att spelträffen har tagits bort.
+
+Kommentar: I nuvarande version sparas ingen historik över raderade spelträffar. Om en spelträff har tagits bort går det därför inte att se i efterhand vilken spelträff det var, om inte informationen finns kvar på annat sätt.
