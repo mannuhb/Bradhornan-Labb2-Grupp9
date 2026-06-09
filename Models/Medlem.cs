@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ObjektLab1.Models
 {
     public class Medlem
     {
         public int Id { get; private set; }
-        public int Medlemsnummer { get; private set; }
+        [NotMapped]
+        public int Medlemsnummer => Id;
         public string Namn { get; private set; } = string.Empty;
         public string Efternamn { get; private set; } = string.Empty;
         public string Epost { get; private set; } = string.Empty;
@@ -28,7 +30,7 @@ namespace ObjektLab1.Models
             ValideraMobilnummer(mobilnummer);
             ValideraRoll(roll);
 
-            Medlemsnummer = medlemsnummer;
+            Id = medlemsnummer;
             Namn = namn.Trim();
             Efternamn = efternamn.Trim();
             Epost = epost.Trim();
@@ -70,7 +72,7 @@ namespace ObjektLab1.Models
         public override string ToString()
         {
             var status = ArSparrad ? " (SPÄRRAD)" : string.Empty;
-            return $"{Medlemsnummer} - {Namn} {Efternamn} - {Epost} - {Mobilnummer} - {Roll}{status}";
+            return $"ID {Id} - {Namn} {Efternamn} - {Epost} - {Mobilnummer} - {Roll}{status}";
         }
 
         private static void ValideraMedlemsnummer(int medlemsnummer)

@@ -51,7 +51,7 @@ namespace ObjektLab1.Models
 
         public override string ToString()
         {
-            return $"{Titel} - {Kategori} ({MinSpelare}-{MaxSpelare} spelare)";
+            return $"ID {Id} - {Titel} - {Kategori} ({MinSpelare}-{MaxSpelare} spelare)";
         }
     }
 }

@@ -92,7 +92,7 @@ namespace ObjektLab1.Models
 
         public override string ToString()
         {
-            return $"{Namn} - {Spel.Titel} - {Plats} - {DatumTid:yyyy-MM-dd HH:mm}-{SlutTid():HH:mm} - krav {MinDeltagare}-{MaxDeltagare} deltagare - {LedigaPlatser} lediga platser ({Deltagare.Count}/{MaxDeltagare})";
+            return $"ID {Id} - {Namn} - {Spel.Titel} - {Plats} - {DatumTid:yyyy-MM-dd HH:mm}-{SlutTid():HH:mm} - krav {MinDeltagare}-{MaxDeltagare} deltagare - {LedigaPlatser} lediga platser ({Deltagare.Count}/{MaxDeltagare})";
         }
     }
 }

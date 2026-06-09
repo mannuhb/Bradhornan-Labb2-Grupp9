@@ -36,7 +36,9 @@ Domänmodellen har stärkts genom tydligare inkapsling. `Medlem` har privata set
 
 Alla medlemmar representeras av samma klass `Medlem`, men de kan ha olika roller, till exempel `Spelare`, `Arrangör` och `Administratör`. Det gör modellen enklare att förklara samtidigt som systemet kan skilja på medlemmarnas ansvar.
 
-Varje medlem har ett unikt medlemsnummer som fungerar som medlems-id. Unika fält för medlemsnummer, e-post och mobilnummer skyddas både i service-lagret och med unika index i databasen. Mobilnummer valideras som en affärsregel: det måste bestå av exakt 10 siffror och börja med 0.
+Varje medlem har ett unikt `Id` som fungerar som medlemsnummer och primärnyckel i databasen. Nya medlemmar får id 1, 2, 3 och så vidare via service-lagret innan de sparas. E-post är inte en främmande nyckel eftersom den inte pekar på en annan tabell, men den är konfigurerad som unik alternativ nyckel. Mobilnummer är också unikt via databasindex. Mobilnummer valideras som en affärsregel: det måste bestå av exakt 10 siffror och börja med 0.
+
+`Spel` och `SpelTraff` har också egna primärnycklar i databasen. Dessa id:n visas i gränssnittet genom objektens `ToString()` så att användaren kan se vilken post som är vald.
 
 Förnamn och efternamn valideras också som affärsregler i domänmodellen. De får bara innehålla bokstäver, mellanslag och bindestreck, vilket hindrar symboler i medlemsnamn.
 

@@ -20,16 +20,28 @@ namespace ObjektLab1.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Medlem>()
-                .HasIndex(m => m.Medlemsnummer)
-                .IsUnique();
+                .HasKey(m => m.Id);
+
+            modelBuilder.Entity<Medlem>()
+                .Property(m => m.Id)
+                .ValueGeneratedNever();
 
             modelBuilder.Entity<Medlem>()
                 .HasIndex(m => m.Epost)
                 .IsUnique();
 
             modelBuilder.Entity<Medlem>()
+                .HasAlternateKey(m => m.Epost);
+
+            modelBuilder.Entity<Medlem>()
                 .HasIndex(m => m.Mobilnummer)
                 .IsUnique();
+
+            modelBuilder.Entity<Spel>()
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<SpelTraff>()
+                .HasKey(t => t.Id);
 
             modelBuilder.Entity<SpelTraff>()
                 .HasOne(t => t.Spel)

@@ -27,7 +27,7 @@ namespace ObjektLab1.Services
         {
             using var db = new ForeningDbContext();
             return await db.Medlemmar
-                .OrderBy(m => m.Medlemsnummer)
+                .OrderBy(m => m.Id)
                 .ToListAsync();
         }
 
@@ -68,11 +68,11 @@ namespace ObjektLab1.Services
             if (await db.Medlemmar.AnyAsync(m => m.Mobilnummer == mobilnummer))
                 throw new InvalidOperationException("Det finns redan en medlem med samma mobilnummer.");
 
-            var nyttNummer = await db.Medlemmar.AnyAsync()
-                ? await db.Medlemmar.MaxAsync(m => m.Medlemsnummer) + 1
+            var nyttMedlemsId = await db.Medlemmar.AnyAsync()
+                ? await db.Medlemmar.MaxAsync(m => m.Id) + 1
                 : 1;
 
-            var medlem = new Medlem(nyttNummer, namn, efternamn, epost, mobilnummer, roll);
+            var medlem = new Medlem(nyttMedlemsId, namn, efternamn, epost, mobilnummer, roll);
             db.Medlemmar.Add(medlem);
             await db.SaveChangesAsync();
             return medlem;
