@@ -14,7 +14,7 @@
     .member { font: 14px Arial, sans-serif; fill: #111827; }
     .method { font: 14px Arial, sans-serif; fill: #111827; }
     .assoc { stroke: #111827; stroke-width: 3; fill: none; }
-    .useLine { stroke: #111827; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    .useLine { stroke: #111827; stroke-width: 2; stroke-dasharray: 8 8; fill: none; marker-end: url(#arrow); }
     .inherit { stroke: #111827; stroke-width: 3; fill: none; marker-end: url(#inheritArrow); }
     .labelBox { fill: #f9fafb; stroke: #374151; stroke-width: 1.8; }
     .label { font: bold 13px Arial, sans-serif; fill: #111827; }
@@ -182,7 +182,7 @@
     <text class="label" x="13" y="48">0..* SpelTraff</text>
   </g>
 
-  <!-- Inheritance and architecture relations -->
+  <!-- Inheritance and dependency relations -->
   <path class="inherit" d="M235 800 V740"/>
   <g transform="translate(258 752)">
     <rect class="labelBox" width="52" height="32" rx="4"/>
@@ -192,13 +192,13 @@
   <path class="useLine" d="M410 902 H500 V1068 H560"/>
   <g transform="translate(430 862)">
     <rect class="labelBox" width="82" height="36" rx="4"/>
-    <text class="small" x="13" y="23">anvander</text>
+    <text class="small" x="13" y="23">beroende</text>
   </g>
 
   <path class="useLine" d="M930 1068 H1110"/>
   <g transform="translate(978 1028)">
     <rect class="labelBox" width="82" height="36" rx="4"/>
-    <text class="small" x="13" y="23">anvander</text>
+    <text class="small" x="13" y="23">beroende</text>
   </g>
 
   <g transform="translate(1110 1122)">
