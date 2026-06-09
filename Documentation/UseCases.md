@@ -11,10 +11,11 @@ Aktör: Administratör/Föreningsansvarig
 1. Användaren skriver medlemmens förnamn, efternamn, e-postadress och mobilnummer.
 2. Användaren klickar på "Registrera ny medlem".
 3. Systemet kontrollerar att förnamn, efternamn, e-postadress och mobilnummer är giltiga.
-4. Systemet kontrollerar att e-postadress och mobilnummer inte redan används.
-5. Systemet skapar ett nytt unikt medlemsnummer som fungerar som medlems-id.
-6. Systemet sparar medlemmen i databasen.
-7. Medlemslistan uppdateras i gränssnittet.
+4. Systemet kontrollerar att mobilnummer består av exakt 10 siffror och börjar med 0.
+5. Systemet kontrollerar att e-postadress och mobilnummer inte redan används.
+6. Systemet skapar ett nytt unikt medlemsnummer som fungerar som medlems-id.
+7. Systemet sparar medlemmen i databasen.
+8. Medlemslistan uppdateras i gränssnittet.
 
 ## Use case 2 - Skapa spelträff
 

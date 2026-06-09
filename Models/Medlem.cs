@@ -102,11 +102,14 @@ namespace ObjektLab1.Models
             if (string.IsNullOrWhiteSpace(mobilnummer))
                 throw new ArgumentException("Mobilnummer måste anges.");
 
-            foreach (var tecken in mobilnummer)
-            {
-                if (!char.IsDigit(tecken) && tecken != ' ' && tecken != '-' && tecken != '+')
-                    throw new ArgumentException("Mobilnummer får bara innehålla siffror, mellanslag, bindestreck och plus.");
-            }
+            if (mobilnummer.Length != 10)
+                throw new ArgumentException("Mobilnummer måste vara exakt 10 siffror.");
+
+            if (!mobilnummer.StartsWith('0'))
+                throw new ArgumentException("Mobilnummer måste börja med 0.");
+
+            if (!mobilnummer.All(char.IsDigit))
+                throw new ArgumentException("Mobilnummer får bara innehålla siffror.");
         }
 
         private static void ValideraRoll(string roll)

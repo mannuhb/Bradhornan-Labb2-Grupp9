@@ -65,6 +65,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 - Medlemsnummer måste vara större än 0.
 - Förnamn, efternamn, e-post, mobilnummer, titel, kategori, plats och träffnamn får inte vara tomma.
 - Medlemsnummer, e-postadress och mobilnummer måste vara unika.
+- Mobilnummer måste bestå av exakt 10 siffror och börja med 0.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
 - En spärrad medlem kan inte anmälas till spelträff.
