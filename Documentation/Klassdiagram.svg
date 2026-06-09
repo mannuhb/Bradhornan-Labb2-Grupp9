@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1130" viewBox="0 0 1600 1130">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1140" viewBox="0 0 1600 1140">
   <style>
     .page { fill: #f8fafc; }
     .titleBox { fill: #111827; stroke: #111827; stroke-width: 2; }
@@ -13,11 +13,9 @@
     .className { font: bold 18px Arial, sans-serif; fill: #111827; }
     .member { font: 14px Arial, sans-serif; fill: #111827; }
     .method { font: 14px Arial, sans-serif; fill: #111827; }
-    .pk { font: bold 14px Arial, sans-serif; fill: #dc2626; }
-    .fk { font: bold 14px Arial, sans-serif; fill: #2563eb; }
-    .ak { font: bold 14px Arial, sans-serif; fill: #7c3aed; }
     .assoc { stroke: #111827; stroke-width: 3; fill: none; }
     .useLine { stroke: #111827; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    .inherit { stroke: #111827; stroke-width: 3; fill: none; marker-end: url(#inheritArrow); }
     .labelBox { fill: #f9fafb; stroke: #374151; stroke-width: 1.8; }
     .label { font: bold 13px Arial, sans-serif; fill: #111827; }
     .small { font: 13px Arial, sans-serif; fill: #374151; }
@@ -28,17 +26,20 @@
     <marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="5" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L0,10 L12,5 z" fill="#111827" />
     </marker>
+    <marker id="inheritArrow" markerWidth="18" markerHeight="18" refX="16" refY="8" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L16,8 L0,16 z" fill="#ffffff" stroke="#111827" stroke-width="2" />
+    </marker>
   </defs>
 
-  <rect class="page" width="1600" height="1130"/>
+  <rect class="page" width="1600" height="1140"/>
 
   <g transform="translate(40 24)">
     <rect class="titleBox" width="1520" height="82" rx="6"/>
     <text class="title" x="28" y="35">Klassdiagram - Br&#228;dh&#246;rnan Labb 2</text>
-    <text class="subtitle" x="28" y="62">Relationerna f&#246;ljer modellen: Forening 1 till 0..* Medlem, Spel och SpelTraff samt Medlem 0..* till 0..* SpelTraff.</text>
+    <text class="subtitle" x="28" y="62">UML-diagram med klasser, relationer, kardinalitet och arv mellan ViewModelBase och MainViewModel.</text>
   </g>
 
-  <!-- Forening -->
+  <!-- Domain classes -->
   <g transform="translate(60 150)">
     <rect class="classBox" width="350" height="275"/>
     <rect class="domainHead" width="350" height="48"/>
@@ -52,87 +53,95 @@
     <text class="method" x="22" y="250">+ Sortera / Gruppera</text>
   </g>
 
-  <!-- Medlem -->
   <g transform="translate(560 145)">
     <rect class="classBox" width="370" height="390"/>
     <rect class="domainHead" width="370" height="48"/>
     <text class="className" x="150" y="31">Medlem</text>
-    <text class="pk" x="22" y="78">PK</text><text class="member" x="72" y="78">+ Id: int</text>
-    <text class="member" x="22" y="108">+</text><text class="member" x="72" y="108">Medlemsnummer: int [NotMapped]</text>
-    <text class="member" x="22" y="138">+</text><text class="member" x="72" y="138">Namn: string</text>
-    <text class="member" x="22" y="168">+</text><text class="member" x="72" y="168">Efternamn: string</text>
-    <text class="ak" x="22" y="198">AK</text><text class="member" x="72" y="198">+ Epost: string [unik]</text>
-    <text class="ak" x="22" y="228">AK</text><text class="member" x="72" y="228">+ Mobilnummer: string [unik]</text>
-    <text class="member" x="22" y="258">+</text><text class="member" x="72" y="258">Roll: string</text>
-    <text class="member" x="22" y="288">+</text><text class="member" x="72" y="288">ArSparrad: bool</text>
-    <text class="member" x="22" y="318">+</text><text class="member" x="72" y="318">Speltraffar: List&lt;SpelTraff&gt;</text>
+    <text class="member" x="22" y="78">+ Id: int</text>
+    <text class="member" x="22" y="108">+ Medlemsnummer: int</text>
+    <text class="member" x="22" y="138">+ Namn: string</text>
+    <text class="member" x="22" y="168">+ Efternamn: string</text>
+    <text class="member" x="22" y="198">+ Epost: string</text>
+    <text class="member" x="22" y="228">+ Mobilnummer: string</text>
+    <text class="member" x="22" y="258">+ Roll: string</text>
+    <text class="member" x="22" y="288">+ ArSparrad: bool</text>
+    <text class="member" x="22" y="318">+ Speltraffar: List&lt;SpelTraff&gt;</text>
     <line class="sectionLine" x1="0" y1="336" x2="370" y2="336"/>
-    <text class="method" x="22" y="362">+ UppdateraKontaktuppgifter(...): void</text>
-    <text class="method" x="22" y="384">+ Sparra() / Avsparra(): void</text>
+    <text class="method" x="22" y="362">+ Sparra(): void</text>
+    <text class="method" x="22" y="384">+ Avsparra(): void</text>
   </g>
 
-  <!-- Spel -->
   <g transform="translate(560 655)">
     <rect class="classBox" width="370" height="320"/>
     <rect class="domainHead" width="370" height="48"/>
     <text class="className" x="165" y="31">Spel</text>
-    <text class="pk" x="22" y="78">PK</text><text class="member" x="72" y="78">+ Id: int</text>
-    <text class="member" x="22" y="108">+</text><text class="member" x="72" y="108">Titel: string</text>
-    <text class="member" x="22" y="138">+</text><text class="member" x="72" y="138">Kategori: string</text>
-    <text class="member" x="22" y="168">+</text><text class="member" x="72" y="168">MinSpelare: int</text>
-    <text class="member" x="22" y="198">+</text><text class="member" x="72" y="198">MaxSpelare: int</text>
-    <text class="member" x="22" y="228">+</text><text class="member" x="72" y="228">Speltraffar: List&lt;SpelTraff&gt;</text>
+    <text class="member" x="22" y="78">+ Id: int</text>
+    <text class="member" x="22" y="108">+ Titel: string</text>
+    <text class="member" x="22" y="138">+ Kategori: string</text>
+    <text class="member" x="22" y="168">+ MinSpelare: int</text>
+    <text class="member" x="22" y="198">+ MaxSpelare: int</text>
+    <text class="member" x="22" y="228">+ Speltraffar: List&lt;SpelTraff&gt;</text>
     <line class="sectionLine" x1="0" y1="246" x2="370" y2="246"/>
     <text class="method" x="22" y="272">+ Uppdatera(...): void</text>
     <text class="method" x="22" y="296">+ ToString(): string</text>
   </g>
 
-  <!-- SpelTraff -->
   <g transform="translate(1110 345)">
     <rect class="classBox" width="410" height="430"/>
     <rect class="domainHead" width="410" height="48"/>
     <text class="className" x="160" y="31">SpelTraff</text>
-    <text class="pk" x="22" y="78">PK</text><text class="member" x="72" y="78">+ Id: int</text>
-    <text class="member" x="22" y="108">+</text><text class="member" x="72" y="108">Namn: string</text>
-    <text class="member" x="22" y="138">+</text><text class="member" x="72" y="138">Plats: string</text>
-    <text class="member" x="22" y="168">+</text><text class="member" x="72" y="168">DatumTid: DateTime</text>
-    <text class="member" x="22" y="198">+</text><text class="member" x="72" y="198">MinDeltagare: int</text>
-    <text class="member" x="22" y="228">+</text><text class="member" x="72" y="228">MaxDeltagare: int</text>
-    <text class="member" x="22" y="258">+</text><text class="member" x="72" y="258">SpeltidMinuter: int</text>
-    <text class="fk" x="22" y="288">FK</text><text class="member" x="72" y="288">+ SpelId: int</text>
-    <text class="member" x="22" y="318">+</text><text class="member" x="72" y="318">Spel: Spel</text>
-    <text class="member" x="22" y="348">+</text><text class="member" x="72" y="348">Deltagare: List&lt;Medlem&gt;</text>
-    <text class="member" x="22" y="378">+</text><text class="member" x="72" y="378">LedigaPlatser: int</text>
+    <text class="member" x="22" y="78">+ Id: int</text>
+    <text class="member" x="22" y="108">+ Namn: string</text>
+    <text class="member" x="22" y="138">+ Plats: string</text>
+    <text class="member" x="22" y="168">+ DatumTid: DateTime</text>
+    <text class="member" x="22" y="198">+ MinDeltagare: int</text>
+    <text class="member" x="22" y="228">+ MaxDeltagare: int</text>
+    <text class="member" x="22" y="258">+ SpeltidMinuter: int</text>
+    <text class="member" x="22" y="288">+ SpelId: int</text>
+    <text class="member" x="22" y="318">+ Spel: Spel</text>
+    <text class="member" x="22" y="348">+ Deltagare: List&lt;Medlem&gt;</text>
+    <text class="member" x="22" y="378">+ LedigaPlatser: int</text>
     <line class="sectionLine" x1="0" y1="394" x2="410" y2="394"/>
     <text class="method" x="22" y="418">+ Anmal(medlem) / Avanmal(medlem): void</text>
   </g>
 
   <!-- Application classes -->
-  <g transform="translate(60 690)">
+  <g transform="translate(60 615)">
+    <rect class="classBox" width="350" height="125"/>
+    <rect class="viewHead" width="350" height="48"/>
+    <text class="className" x="112" y="31">ViewModelBase</text>
+    <text class="member" x="22" y="82">+ PropertyChanged: event</text>
+    <text class="method" x="22" y="110"># OnPropertyChanged(...): void</text>
+  </g>
+
+  <g transform="translate(60 800)">
     <rect class="classBox" width="350" height="205"/>
     <rect class="viewHead" width="350" height="48"/>
     <text class="className" x="108" y="31">MainViewModel</text>
     <text class="member" x="22" y="82">+ Medlemmar: ObservableCollection</text>
     <text class="member" x="22" y="112">+ Spel: ObservableCollection</text>
     <text class="member" x="22" y="142">+ Speltraffar: ObservableCollection</text>
-    <text class="member" x="22" y="172">+ Commands</text>
+    <text class="member" x="22" y="172">+ ValdMedlem / ValdTraff</text>
   </g>
 
-  <g transform="translate(60 930)">
-    <rect class="classBox" width="350" height="115"/>
-    <rect class="serviceHead" width="350" height="42"/>
-    <text class="className" x="102" y="28">ForeningService</text>
+  <g transform="translate(560 1010)">
+    <rect class="classBox" width="370" height="115"/>
+    <rect class="serviceHead" width="370" height="42"/>
+    <text class="className" x="112" y="28">ForeningService</text>
     <text class="method" x="22" y="70">+ Registrera / Uppdatera / Ta bort</text>
     <text class="method" x="22" y="98">+ AnmalAsync() / AvanmalAsync()</text>
   </g>
 
-  <g transform="translate(560 1010)">
-    <rect class="classBox" width="370" height="58"/>
-    <rect class="dbHead" width="370" height="58"/>
-    <text class="className" x="108" y="36">ForeningDbContext</text>
+  <g transform="translate(1110 920)">
+    <rect class="classBox" width="410" height="170"/>
+    <rect class="dbHead" width="410" height="48"/>
+    <text class="className" x="126" y="31">ForeningDbContext</text>
+    <text class="member" x="22" y="82">+ Medlemmar: DbSet&lt;Medlem&gt;</text>
+    <text class="member" x="22" y="112">+ Spel: DbSet&lt;Spel&gt;</text>
+    <text class="member" x="22" y="142">+ Speltraffar: DbSet&lt;SpelTraff&gt;</text>
   </g>
 
-  <!-- Exact domain relations requested -->
+  <!-- Exact domain relations -->
   <path class="assoc" d="M410 205 H560"/>
   <g transform="translate(430 160)">
     <rect class="labelBox" width="110" height="70" rx="4"/>
@@ -160,11 +169,6 @@
     <text class="label" x="14" y="24">Spel 1</text>
     <text class="label" x="14" y="48">0..* SpelTraff</text>
   </g>
-  <g transform="translate(1165 802)">
-    <rect class="labelBox" width="100" height="46" rx="4"/>
-    <text class="small" x="13" y="19">FK: SpelId</text>
-    <text class="small" x="13" y="36">till Spel.Id</text>
-  </g>
 
   <path class="assoc" d="M930 340 H1110"/>
   <g transform="translate(958 270)">
@@ -173,29 +177,32 @@
     <text class="label" x="13" y="48">0..* SpelTraff</text>
   </g>
 
-  <!-- Exact architecture relations requested -->
-  <path class="useLine" d="M235 895 V930"/>
-  <g transform="translate(252 900)">
+  <!-- Inheritance and architecture relations -->
+  <path class="inherit" d="M235 800 V740"/>
+  <g transform="translate(258 752)">
+    <rect class="labelBox" width="52" height="32" rx="4"/>
+    <text class="small" x="12" y="21">arv</text>
+  </g>
+
+  <path class="useLine" d="M410 902 H560 V1068"/>
+  <g transform="translate(450 868)">
     <rect class="labelBox" width="82" height="36" rx="4"/>
     <text class="small" x="13" y="23">anvander</text>
   </g>
 
-  <path class="useLine" d="M410 988 H560"/>
-  <g transform="translate(438 940)">
+  <path class="useLine" d="M930 1068 H1110"/>
+  <g transform="translate(978 1028)">
     <rect class="labelBox" width="82" height="36" rx="4"/>
     <text class="small" x="13" y="23">anvander</text>
   </g>
 
-  <path class="useLine" d="M745 1010 V975"/>
-  <g transform="translate(948 988)">
-    <rect class="labelBox" width="260" height="50" rx="4"/>
-    <text class="small" x="14" y="20">ForeningDbContext hanterar</text>
-    <text class="small" x="14" y="38">Medlem, Spel och SpelTraff</text>
+  <g transform="translate(1110 1102)">
+    <rect class="labelBox" width="350" height="30" rx="4"/>
+    <text class="small" x="14" y="20">ForeningDbContext hanterar Medlem, Spel och SpelTraff</text>
   </g>
-  <path class="assoc" d="M930 1038 H948"/>
 
-  <g transform="translate(40 1090)">
-    <rect class="legend" width="1520" height="24" rx="4"/>
-    <text class="small" x="18" y="17">PK = primarnyckel, FK = frammande nyckel, AK = alternativ unik nyckel. Kardinalitet: 1 betyder en, 0..* betyder noll eller flera.</text>
+  <g transform="translate(40 1100)">
+    <rect class="legend" width="990" height="28" rx="4"/>
+    <text class="small" x="18" y="19">Unika f&#228;lt som e-post och mobilnummer beskrivs i dokumentationen och i databasdiagrammet, medan UML visar klassernas modell.</text>
   </g>
 </svg>
