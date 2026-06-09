@@ -86,7 +86,7 @@
     <text class="method" x="22" y="296">+ ToString(): string</text>
   </g>
 
-  <g transform="translate(1110 345)">
+  <g transform="translate(1040 345)">
     <rect class="classBox" width="410" height="430"/>
     <rect class="domainHead" width="410" height="48"/>
     <text class="className" x="160" y="31">SpelTraff</text>
@@ -155,17 +155,17 @@
   <text class="label" x="430" y="392">1</text>
   <text class="label" x="520" y="806">0..*</text>
 
-  <path class="assoc" d="M410 250 H500 V125 H1315 V345"/>
+  <path class="assoc" d="M410 250 H500 V125 H1245 V345"/>
   <text class="label" x="430" y="242">1</text>
-  <text class="label" x="1325" y="334">0..*</text>
+  <text class="label" x="1255" y="334">0..*</text>
 
-  <path class="assoc" d="M930 815 H1040 V560 H1110"/>
+  <path class="assoc" d="M930 815 H990 V560 H1040"/>
   <text class="label" x="950" y="806">1</text>
-  <text class="label" x="1070" y="552">0..*</text>
+  <text class="label" x="1000" y="552">0..*</text>
 
-  <path class="assoc" d="M930 420 H1110"/>
+  <path class="assoc" d="M930 420 H1040"/>
   <text class="label" x="950" y="411">0..*</text>
-  <text class="label" x="1070" y="411">0..*</text>
+  <text class="label" x="1000" y="411">0..*</text>
 
   <!-- Inheritance and dependency relations -->
   <path class="inherit" d="M235 1010 V965"/>
