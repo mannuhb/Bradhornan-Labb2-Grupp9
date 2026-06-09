@@ -133,6 +133,7 @@ Ta inte med genererade mappar i zip-filen:
 ## Dokument som hör till inlämningen
 
 - `Documentation/Klassdiagram.svg`
+- `Documentation/Dataflodesdiagram.svg`
 - `Documentation/Sekvensdiagram.svg`
 - `Documentation/UseCases.md`
 - `Documentation/Reflektion.md`

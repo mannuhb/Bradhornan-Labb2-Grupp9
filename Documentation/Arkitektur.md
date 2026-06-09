@@ -40,6 +40,8 @@ Varje medlem har ett unikt `Id` som fungerar som medlemsnummer och primärnyckel
 
 `Spel` och `SpelTraff` har också egna primärnycklar i databasen. Dessa id:n visas i gränssnittet genom objektens `ToString()` så att användaren kan se vilken post som är vald.
 
+Databasens nycklar och dataflöde visas även i `Documentation/Dataflodesdiagram.svg`. Diagrammet markerar PK, FK, alternativa unika nycklar och kardinalitet mellan tabellerna.
+
 Förnamn och efternamn valideras också som affärsregler i domänmodellen. De får bara innehålla bokstäver, mellanslag och bindestreck, vilket hindrar symboler i medlemsnamn.
 
 Spel kan uppdateras genom en metod i domänklassen `Spel`, vilket gör att ändringar av titel, kategori och antal spelare fortfarande går genom klassens validering. Spelträffar skapas via ett kalenderfält för datum och en tidslista, vilket ger ett tydligare och mer användarvänligt arbetsflöde än att skriva hela datum/tid manuellt. Systemet stoppar också spelträffar som ligger i dåtid.
