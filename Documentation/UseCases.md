@@ -17,7 +17,21 @@ Aktör: Administratör/Föreningsansvarig
 7. Systemet sparar medlemmen i databasen.
 8. Medlemslistan uppdateras i gränssnittet.
 
-## Use case 2 - Skapa spelträff
+## Use case 2 - Uppdatera medlem
+
+Aktör: Administratör/Föreningsansvarig
+
+1. Användaren väljer en medlem i medlemslistan.
+2. Systemet fyller formuläret med medlemmens nuvarande uppgifter.
+3. Användaren ändrar förnamn, efternamn, e-postadress, mobilnummer eller roll.
+4. Användaren klickar på "Uppdatera vald medlem".
+5. Systemet kontrollerar att förnamn och efternamn bara innehåller bokstäver, mellanslag och bindestreck.
+6. Systemet kontrollerar att mobilnummer består av exakt 10 siffror och börjar med 0.
+7. Systemet kontrollerar att e-postadress och mobilnummer inte används av någon annan medlem.
+8. Systemet sparar ändringarna i databasen.
+9. Medlemslistan uppdateras i gränssnittet.
+
+## Use case 3 - Skapa spelträff
 
 Aktör: Administratör/Föreningsansvarig
 
@@ -29,7 +43,7 @@ Aktör: Administratör/Föreningsansvarig
 6. Systemet sparar spelträffen i databasen.
 7. Listan med spelträffar uppdateras.
 
-## Use case 3 - Anmäla medlem till spelträff
+## Use case 4 - Anmäla medlem till spelträff
 
 Aktör: Administratör/Föreningsansvarig
 

@@ -82,13 +82,19 @@ namespace ObjektLab1.Models
         private static void ValideraNamn(string namn)
         {
             if (string.IsNullOrWhiteSpace(namn))
-                throw new ArgumentException("Namn måste anges.");
+                throw new ArgumentException("Förnamn måste anges.");
+
+            if (!InnehallerBaraBokstaverOchBindestreck(namn))
+                throw new ArgumentException("Förnamn får bara innehålla bokstäver, mellanslag och bindestreck.");
         }
 
         private static void ValideraEfternamn(string efternamn)
         {
             if (string.IsNullOrWhiteSpace(efternamn))
                 throw new ArgumentException("Efternamn måste anges.");
+
+            if (!InnehallerBaraBokstaverOchBindestreck(efternamn))
+                throw new ArgumentException("Efternamn får bara innehålla bokstäver, mellanslag och bindestreck.");
         }
 
         private static void ValideraEpost(string epost)
@@ -116,6 +122,17 @@ namespace ObjektLab1.Models
         {
             if (string.IsNullOrWhiteSpace(roll))
                 throw new ArgumentException("Roll måste anges.");
+        }
+
+        private static bool InnehallerBaraBokstaverOchBindestreck(string text)
+        {
+            foreach (var tecken in text)
+            {
+                if (!char.IsLetter(tecken) && tecken != ' ' && tecken != '-')
+                    return false;
+            }
+
+            return true;
         }
     }
 }

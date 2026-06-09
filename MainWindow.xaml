@@ -119,7 +119,9 @@
                          ItemTemplate="{StaticResource MedlemTemplate}"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-                <TextBlock Text="Förnamn på ny medlem" Margin="0,10,0,5"/>
+                <TextBlock Text="Medlemsuppgifter" FontWeight="Bold" Margin="0,10,0,5"/>
+
+                <TextBlock Text="Förnamn" Margin="0,4,0,5"/>
                 <TextBox Height="26"
                          Text="{Binding NyMedlemNamn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -141,6 +143,7 @@
                           SelectedItem="{Binding NyMedlemRoll, Mode=TwoWay}"/>
 
                 <Button Content="Registrera ny medlem" Margin="0,4,0,4" Height="28" Command="{Binding RegistreraMedlemCommand}"/>
+                <Button Content="Uppdatera vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding UppdateraMedlemCommand}"/>
                 <Button Content="Avregistrera vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvregistreraMedlemCommand}"/>
                 <Button Content="Spärra vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding SparraMedlemCommand}"/>
                 <Button Content="Avspärra vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvsparraMedlemCommand}"/>

@@ -78,6 +78,25 @@ namespace ObjektLab1.Services
             return medlem;
         }
 
+        public async Task UppdateraMedlemAsync(int medlemId, string namn, string efternamn, string epost, string mobilnummer, string roll)
+        {
+            using var db = new ForeningDbContext();
+            epost = epost.Trim();
+            mobilnummer = mobilnummer.Trim();
+
+            var medlem = await db.Medlemmar.FindAsync(medlemId)
+                ?? throw new InvalidOperationException("Välj en medlem.");
+
+            if (await db.Medlemmar.AnyAsync(m => m.Id != medlemId && m.Epost == epost))
+                throw new InvalidOperationException("Det finns redan en annan medlem med samma e-postadress.");
+
+            if (await db.Medlemmar.AnyAsync(m => m.Id != medlemId && m.Mobilnummer == mobilnummer))
+                throw new InvalidOperationException("Det finns redan en annan medlem med samma mobilnummer.");
+
+            medlem.UppdateraKontaktuppgifter(namn, efternamn, epost, mobilnummer, roll);
+            await db.SaveChangesAsync();
+        }
+
         public async Task<Spel> RegistreraSpelAsync(string titel, string kategori, int minSpelare, int maxSpelare)
         {
             using var db = new ForeningDbContext();

@@ -45,6 +45,7 @@ namespace ObjektLab1.ViewModels
         {
             LaddaCommand = new AsyncRelayCommand(LaddaAsync);
             RegistreraMedlemCommand = new AsyncRelayCommand(RegistreraMedlemAsync);
+            UppdateraMedlemCommand = new AsyncRelayCommand(UppdateraMedlemAsync, () => ValdMedlem != null);
             AvregistreraMedlemCommand = new AsyncRelayCommand(AvregistreraMedlemAsync, () => ValdMedlem != null);
             SparraMedlemCommand = new AsyncRelayCommand(() => UppdateraMedlemStatusAsync(true), () => ValdMedlem != null);
             AvsparraMedlemCommand = new AsyncRelayCommand(() => UppdateraMedlemStatusAsync(false), () => ValdMedlem != null);
@@ -62,6 +63,7 @@ namespace ObjektLab1.ViewModels
 
         public AsyncRelayCommand LaddaCommand { get; }
         public AsyncRelayCommand RegistreraMedlemCommand { get; }
+        public AsyncRelayCommand UppdateraMedlemCommand { get; }
         public AsyncRelayCommand AvregistreraMedlemCommand { get; }
         public AsyncRelayCommand SparraMedlemCommand { get; }
         public AsyncRelayCommand AvsparraMedlemCommand { get; }
@@ -82,7 +84,10 @@ namespace ObjektLab1.ViewModels
             set
             {
                 if (SetProperty(ref _valdMedlem, value))
+                {
+                    FyllMedlemsformularFranValdMedlem();
                     UppdateraCommandStatus();
+                }
             }
         }
 
@@ -253,13 +258,24 @@ namespace ObjektLab1.ViewModels
             await HanteraFelAsync(async () =>
             {
                 await _service.RegistreraMedlemAsync(NyMedlemNamn, NyMedlemEfternamn, NyMedlemEpost, NyMedlemMobilnummer, NyMedlemRoll);
-                NyMedlemNamn = string.Empty;
-                NyMedlemEfternamn = string.Empty;
-                NyMedlemEpost = string.Empty;
-                NyMedlemMobilnummer = string.Empty;
-                NyMedlemRoll = "Spelare";
+                RensaMedlemsformular();
                 await LaddaMedlemmarAsync();
                 StatusText = "Ny medlem har registrerats.";
+            });
+        }
+
+        private async Task UppdateraMedlemAsync()
+        {
+            if (ValdMedlem == null)
+                return;
+
+            await HanteraFelAsync(async () =>
+            {
+                var medlemId = ValdMedlem.Id;
+                await _service.UppdateraMedlemAsync(medlemId, NyMedlemNamn, NyMedlemEfternamn, NyMedlemEpost, NyMedlemMobilnummer, NyMedlemRoll);
+                await LaddaMedlemmarAsync();
+                ValdMedlem = Medlemmar.FirstOrDefault(m => m.Id == medlemId);
+                StatusText = "Medlemmen har uppdaterats.";
             });
         }
 
@@ -435,6 +451,7 @@ namespace ObjektLab1.ViewModels
         private void UppdateraCommandStatus()
         {
             AvregistreraMedlemCommand.RaiseCanExecuteChanged();
+            UppdateraMedlemCommand.RaiseCanExecuteChanged();
             SparraMedlemCommand.RaiseCanExecuteChanged();
             AvsparraMedlemCommand.RaiseCanExecuteChanged();
             AnmalCommand.RaiseCanExecuteChanged();
@@ -452,6 +469,27 @@ namespace ObjektLab1.ViewModels
             {
                 StatusText = ex.Message;
             }
+        }
+
+        private void FyllMedlemsformularFranValdMedlem()
+        {
+            if (ValdMedlem == null)
+                return;
+
+            NyMedlemNamn = ValdMedlem.Namn;
+            NyMedlemEfternamn = ValdMedlem.Efternamn;
+            NyMedlemEpost = ValdMedlem.Epost;
+            NyMedlemMobilnummer = ValdMedlem.Mobilnummer;
+            NyMedlemRoll = ValdMedlem.Roll;
+        }
+
+        private void RensaMedlemsformular()
+        {
+            NyMedlemNamn = string.Empty;
+            NyMedlemEfternamn = string.Empty;
+            NyMedlemEpost = string.Empty;
+            NyMedlemMobilnummer = string.Empty;
+            NyMedlemRoll = "Spelare";
         }
 
         private static int LasHeltal(string text, string faltNamn)

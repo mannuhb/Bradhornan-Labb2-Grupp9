@@ -38,6 +38,8 @@ Alla medlemmar representeras av samma klass `Medlem`, men de kan ha olika roller
 
 Varje medlem har ett unikt medlemsnummer som fungerar som medlems-id. Unika fält för medlemsnummer, e-post och mobilnummer skyddas både i service-lagret och med unika index i databasen. Mobilnummer valideras som en affärsregel: det måste bestå av exakt 10 siffror och börja med 0.
 
+Förnamn och efternamn valideras också som affärsregler i domänmodellen. De får bara innehålla bokstäver, mellanslag och bindestreck, vilket hindrar symboler i medlemsnamn.
+
 ## Designval
 
 Appen använder en liten egen implementation av `RelayCommand` och `AsyncRelayCommand` i stället för CommunityToolkit.Mvvm, eftersom det räcker för projektets omfattning och gör commands lätta att förklara vid redovisning.
