@@ -87,9 +87,9 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 
 ## Inkapsling och arv
 
-`Medlem` är en central basklass i domänmodellen. Klassens viktiga data har privata setters och ändras via metoder som `Sparra`, `Avsparra` och `UppdateraKontaktuppgifter`. Detta minskar risken för att objekt manipuleras direkt utifrån utan att affärsregler kontrolleras.
+`Medlem` är en central klass i domänmodellen. Klassens viktiga data har privata setters och ändras via metoder som `Sparra`, `Avsparra` och `UppdateraKontaktuppgifter`. Detta minskar risken för att objekt manipuleras direkt utifrån utan att affärsregler kontrolleras.
 
-Modellen innehåller även subklasserna `StandardMedlem` och `HedersMedlem`. De ärver från `Medlem` och kan användas polymorft via basklassen, till exempel när olika medlemstyper behöver visas eller få olika beteenden.
+Alla medlemmar är vanliga medlemmar, men de kan ha olika roller, till exempel `Spelare`, `Arrangör` eller `Administratör`.
 
 ## Asynkronitet
 

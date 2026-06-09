@@ -25,8 +25,8 @@
     <text x="14" y="120" class="text">+ Namn: string</text>
     <text x="14" y="145" class="text">+ Epost: string</text>
     <text x="14" y="170" class="text">+ Mobilnummer: string</text>
-    <text x="14" y="195" class="text">+ ArSparrad: bool</text>
-    <text x="14" y="220" class="text">+ Speltraffar: List&lt;SpelTraff&gt;</text>
+    <text x="14" y="195" class="text">+ Roll: string</text>
+    <text x="14" y="220" class="text">+ ArSparrad: bool</text>
     <line x1="0" y1="232" x2="260" y2="232" stroke="#222"/>
     <text x="14" y="255" class="small">+ Sparra()</text>
     <text x="120" y="255" class="small">+ Avsparra()</text>
@@ -45,20 +45,6 @@
     <text x="14" y="195" class="text">+ Speltraffar: List&lt;SpelTraff&gt;</text>
     <line x1="0" y1="210" x2="260" y2="210" stroke="#222"/>
     <text x="14" y="235" class="text">+ ToString(): string</text>
-  </g>
-
-  <g transform="translate(40 350)">
-    <rect class="box" width="260" height="95"/>
-    <rect class="head" width="260" height="42"/>
-    <text x="65" y="27" class="title">StandardMedlem</text>
-    <text x="14" y="70" class="text">+ Medlemstyp: string</text>
-  </g>
-
-  <g transform="translate(390 350)">
-    <rect class="box" width="260" height="95"/>
-    <rect class="head" width="260" height="42"/>
-    <text x="76" y="27" class="title">HedersMedlem</text>
-    <text x="14" y="70" class="text">+ Medlemstyp: string</text>
   </g>
 
   <g transform="translate(760 70)">
@@ -134,11 +120,6 @@
   <path class="line" d="M650 200 C690 200 715 200 760 205"/>
   <text x="665" y="180" class="label">1 spel</text>
 
-  <path class="line" d="M170 330 L170 350"/>
-  <text x="183" y="342" class="label">ärver</text>
-
-  <path class="line" d="M210 330 C300 340 400 340 485 350"/>
-  <text x="325" y="330" class="label">ärver</text>
 
   <path class="line" d="M340 560 C375 560 405 560 440 560"/>
   <text x="355" y="545" class="label">använder</text>

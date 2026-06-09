@@ -56,7 +56,7 @@ namespace ObjektLab1.Services
                 .ToListAsync();
         }
 
-        public async Task<Medlem> RegistreraMedlemAsync(string namn, string epost, string mobilnummer)
+        public async Task<Medlem> RegistreraMedlemAsync(string namn, string epost, string mobilnummer, string roll)
         {
             using var db = new ForeningDbContext();
             epost = epost.Trim();
@@ -72,7 +72,7 @@ namespace ObjektLab1.Services
                 ? await db.Medlemmar.MaxAsync(m => m.Medlemsnummer) + 1
                 : 1;
 
-            var medlem = new StandardMedlem(nyttNummer, namn, epost, mobilnummer);
+            var medlem = new Medlem(nyttNummer, namn, epost, mobilnummer, roll);
             db.Medlemmar.Add(medlem);
             await db.SaveChangesAsync();
             return medlem;

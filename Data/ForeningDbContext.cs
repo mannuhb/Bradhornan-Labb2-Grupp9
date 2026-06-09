@@ -31,15 +31,6 @@ namespace ObjektLab1.Data
                 .HasIndex(m => m.Mobilnummer)
                 .IsUnique();
 
-            modelBuilder.Entity<Medlem>()
-                .Ignore(m => m.Medlemstyp);
-
-            modelBuilder.Entity<Medlem>()
-                .HasDiscriminator<string>("MedlemKategori")
-                .HasValue<Medlem>("Medlem")
-                .HasValue<StandardMedlem>("Ordinarie")
-                .HasValue<HedersMedlem>("Heders");
-
             modelBuilder.Entity<SpelTraff>()
                 .HasOne(t => t.Spel)
                 .WithMany(s => s.Speltraffar)

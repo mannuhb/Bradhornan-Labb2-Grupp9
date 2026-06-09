@@ -8,7 +8,7 @@ Lösningen är uppdelad enligt en enkel trelagerstruktur:
 - Presentationslogik: `MainViewModel`
 - Applikationslogik och dataåtkomst: `ForeningService`
 - Databasåtkomst: `ForeningDbContext`
-- Domänmodell: `Medlem`, `StandardMedlem`, `HedersMedlem`, `Spel`, `SpelTraff`, `Forening`
+- Domänmodell: `Medlem`, `Spel`, `SpelTraff`, `Forening`
 
 ## Motivering av arkitektur
 
@@ -30,11 +30,11 @@ Lösningen är uppdelad i presentation, applikationslogik och dataåtkomst för 
 
 `ForeningDbContext` konfigurerar Entity Framework, relationer och anslutningen till SQL Server LocalDB. Databasen skapas med `EnsureCreatedAsync()`.
 
-## Inkapsling, arv och polymorfism
+## Inkapsling och roller
 
 Domänmodellen har stärkts genom tydligare inkapsling. `Medlem` har privata setters och styr ändringar genom metoder som `Sparra`, `Avsparra` och `UppdateraKontaktuppgifter`.
 
-`StandardMedlem` och `HedersMedlem` är subklasser som ärver från `Medlem`. Det gör att olika medlemstyper kan behandlas gemensamt genom basklassen `Medlem`, men ändå ha möjlighet till olika beteenden genom polymorfism.
+Alla medlemmar representeras av samma klass `Medlem`, men de kan ha olika roller, till exempel `Spelare`, `Arrangör` och `Administratör`. Det gör modellen enklare att förklara samtidigt som systemet kan skilja på medlemmarnas ansvar.
 
 Unika fält för medlemsnummer, e-post och mobilnummer skyddas både i service-lagret och med unika index i databasen.
 

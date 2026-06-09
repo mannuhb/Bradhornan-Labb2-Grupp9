@@ -8,7 +8,7 @@ Persistent lagring har lagts till med Entity Framework Core och SQL Server Local
 
 Ett viktigt designval är att behålla affärsregler i domänklasserna, särskilt i `SpelTraff.Anmal` och `SpelTraff.Avanmal`. Det gör att reglerna inte bara finns i gränssnittet, utan följer objektmodellen.
 
-Vi har även förbättrat inkapslingen i domänmodellen genom att minska direkt åtkomst till medlemsdata och i stället använda tydliga metoder för ändringar. Genom att lägga till `StandardMedlem` och `HedersMedlem` har vi ett enkelt exempel på arv och polymorfism utan att göra modellen onödigt komplicerad.
+Vi har även förbättrat inkapslingen i domänmodellen genom att minska direkt åtkomst till medlemsdata och i stället använda tydliga metoder för ändringar. I stället för att dela upp medlemmar i olika subklasser använder modellen en roll på varje medlem, till exempel spelare, arrangör eller administratör. Det gör modellen enklare men ger ändå möjlighet att visa olika ansvar i systemet.
 
 Asynkrona metoder används vid databasoperationer för att separera databasarbete från vyn och visa responsivitetsaspekten som efterfrågas i Laboration 2.
 

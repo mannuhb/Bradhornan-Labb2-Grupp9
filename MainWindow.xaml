@@ -12,8 +12,11 @@
                         <Style TargetType="Ellipse">
                             <Setter Property="Fill" Value="ForestGreen"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Medlemstyp}" Value="Hedersmedlem">
+                                <DataTrigger Binding="{Binding Roll}" Value="Arrangör">
                                     <Setter Property="Fill" Value="Goldenrod"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Roll}" Value="Administratör">
+                                    <Setter Property="Fill" Value="SteelBlue"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding ArSparrad}" Value="True">
                                     <Setter Property="Fill" Value="DarkRed"/>
@@ -27,8 +30,12 @@
                         <Style TargetType="TextBlock">
                             <Setter Property="Foreground" Value="DarkGreen"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Medlemstyp}" Value="Hedersmedlem">
+                                <DataTrigger Binding="{Binding Roll}" Value="Arrangör">
                                     <Setter Property="Foreground" Value="DarkGoldenrod"/>
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Roll}" Value="Administratör">
+                                    <Setter Property="Foreground" Value="SteelBlue"/>
                                     <Setter Property="FontWeight" Value="SemiBold"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding ArSparrad}" Value="True">
@@ -124,6 +131,11 @@
                 <TextBox Height="26"
                          Text="{Binding NyMedlemMobilnummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
+                <TextBlock Text="Roll" Margin="0,6,0,5"/>
+                <ComboBox Height="26"
+                          ItemsSource="{Binding Roller}"
+                          SelectedItem="{Binding NyMedlemRoll, Mode=TwoWay}"/>
+
                 <Button Content="Registrera ny medlem" Margin="0,4,0,4" Height="28" Command="{Binding RegistreraMedlemCommand}"/>
                 <Button Content="Avregistrera vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding AvregistreraMedlemCommand}"/>
                 <Button Content="Spärra vald medlem" Margin="0,4,0,4" Height="28" Command="{Binding SparraMedlemCommand}"/>
@@ -131,7 +143,7 @@
                 <Button Content="Visa aktiva medlemmar" Margin="0,4,0,4" Height="28" Command="{Binding VisaAktivaMedlemmarCommand}"/>
                 <Button Content="Sortera medlemmar A-Ö" Margin="0,4,0,4" Height="28" Command="{Binding SorteraMedlemmarCommand}"/>
 
-                <TextBlock Text="Status: grön aktiv, röd spärrad, gul hedersmedlem"
+                <TextBlock Text="Status: grön spelare, gul arrangör, blå administratör, röd spärrad"
                            Margin="0,10,0,0"
                            Foreground="#555"
                            TextWrapping="Wrap"/>

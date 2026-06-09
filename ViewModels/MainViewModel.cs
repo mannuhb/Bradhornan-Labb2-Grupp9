@@ -17,6 +17,7 @@ namespace ObjektLab1.ViewModels
         private string _nyMedlemNamn = string.Empty;
         private string _nyMedlemEpost = string.Empty;
         private string _nyMedlemMobilnummer = string.Empty;
+        private string _nyMedlemRoll = "Spelare";
         private string _nyttSpelTitel = string.Empty;
         private string _nyttSpelKategori = string.Empty;
         private string _nyttSpelMin = string.Empty;
@@ -32,6 +33,12 @@ namespace ObjektLab1.ViewModels
         public ObservableCollection<Spel> Spel { get; } = new();
         public ObservableCollection<SpelTraff> Speltraffar { get; } = new();
         public ObservableCollection<Medlem> Deltagare { get; } = new();
+        public ObservableCollection<string> Roller { get; } = new()
+        {
+            "Spelare",
+            "Arrangör",
+            "Administratör"
+        };
 
         public MainViewModel()
         {
@@ -129,6 +136,12 @@ namespace ObjektLab1.ViewModels
         {
             get => _nyMedlemMobilnummer;
             set => SetProperty(ref _nyMedlemMobilnummer, value);
+        }
+
+        public string NyMedlemRoll
+        {
+            get => _nyMedlemRoll;
+            set => SetProperty(ref _nyMedlemRoll, value);
         }
 
         public string NyttSpelTitel
@@ -232,10 +245,11 @@ namespace ObjektLab1.ViewModels
         {
             await HanteraFelAsync(async () =>
             {
-                await _service.RegistreraMedlemAsync(NyMedlemNamn, NyMedlemEpost, NyMedlemMobilnummer);
+                await _service.RegistreraMedlemAsync(NyMedlemNamn, NyMedlemEpost, NyMedlemMobilnummer, NyMedlemRoll);
                 NyMedlemNamn = string.Empty;
                 NyMedlemEpost = string.Empty;
                 NyMedlemMobilnummer = string.Empty;
+                NyMedlemRoll = "Spelare";
                 await LaddaMedlemmarAsync();
                 StatusText = "Ny medlem har registrerats.";
             });

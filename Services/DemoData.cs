@@ -9,10 +9,10 @@ namespace ObjektLab1.Services
         {
             var forening = new Forening();
 
-            var m1 = new StandardMedlem(1, "Björn", "bjorn@bradhornan.se", "0701111111");
-            var m2 = new StandardMedlem(2, "Amira", "amira@bradhornan.se", "0702222222");
-            var m3 = new StandardMedlem(3, "Manar", "manar@bradhornan.se", "0703333333");
-            var m4 = new HedersMedlem(4, "Elmi", "elmi@bradhornan.se", "0704444444");
+            var m1 = new Medlem(1, "Björn", "bjorn@bradhornan.se", "0701111111", "Administratör");
+            var m2 = new Medlem(2, "Amira", "amira@bradhornan.se", "0702222222", "Arrangör");
+            var m3 = new Medlem(3, "Manar", "manar@bradhornan.se", "0703333333", "Spelare");
+            var m4 = new Medlem(4, "Elmi", "elmi@bradhornan.se", "0704444444", "Spelare");
 
             forening.Medlemmar.Add(m1);
             forening.Medlemmar.Add(m2);
