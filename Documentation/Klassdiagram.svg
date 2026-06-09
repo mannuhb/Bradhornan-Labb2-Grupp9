@@ -118,10 +118,12 @@
     <rect class="classBox" width="350" height="205"/>
     <rect class="viewHead" width="350" height="48"/>
     <text class="className" x="108" y="31">MainViewModel</text>
-    <text class="member" x="22" y="82">+ Medlemmar: ObservableCollection</text>
-    <text class="member" x="22" y="112">+ Spel: ObservableCollection</text>
-    <text class="member" x="22" y="142">+ Speltraffar: ObservableCollection</text>
+    <text class="member" x="22" y="82">+ Medlemmar: ObservableCollection&lt;Medlem&gt;</text>
+    <text class="member" x="22" y="112">+ Spel: ObservableCollection&lt;Spel&gt;</text>
+    <text class="member" x="22" y="142">+ Speltraffar: ObservableCollection&lt;SpelTraff&gt;</text>
     <text class="member" x="22" y="172">+ ValdMedlem / ValdTraff</text>
+    <line class="sectionLine" x1="0" y1="184" x2="350" y2="184"/>
+    <text class="method" x="22" y="198">+ LaddaAsync(): Task</text>
   </g>
 
   <g transform="translate(560 1010)">
@@ -132,13 +134,16 @@
     <text class="method" x="22" y="98">+ AnmalAsync() / AvanmalAsync()</text>
   </g>
 
-  <g transform="translate(1110 920)">
-    <rect class="classBox" width="410" height="170"/>
+  <g transform="translate(1110 900)">
+    <rect class="classBox" width="410" height="210"/>
     <rect class="dbHead" width="410" height="48"/>
     <text class="className" x="126" y="31">ForeningDbContext</text>
     <text class="member" x="22" y="82">+ Medlemmar: DbSet&lt;Medlem&gt;</text>
     <text class="member" x="22" y="112">+ Spel: DbSet&lt;Spel&gt;</text>
     <text class="member" x="22" y="142">+ Speltraffar: DbSet&lt;SpelTraff&gt;</text>
+    <line class="sectionLine" x1="0" y1="152" x2="410" y2="152"/>
+    <text class="method" x="22" y="178">+ OnConfiguring(...): void</text>
+    <text class="method" x="22" y="204">+ OnModelCreating(...): void</text>
   </g>
 
   <!-- Exact domain relations -->
@@ -196,7 +201,7 @@
     <text class="small" x="13" y="23">anvander</text>
   </g>
 
-  <g transform="translate(1110 1102)">
+  <g transform="translate(1110 1122)">
     <rect class="labelBox" width="350" height="30" rx="4"/>
     <text class="small" x="14" y="20">ForeningDbContext hanterar Medlem, Spel och SpelTraff</text>
   </g>
