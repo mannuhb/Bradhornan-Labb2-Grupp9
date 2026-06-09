@@ -36,7 +36,7 @@ Domänmodellen har stärkts genom tydligare inkapsling. `Medlem` har privata set
 
 Alla medlemmar representeras av samma klass `Medlem`, men de kan ha olika roller, till exempel `Spelare`, `Arrangör` och `Administratör`. Det gör modellen enklare att förklara samtidigt som systemet kan skilja på medlemmarnas ansvar.
 
-Unika fält för medlemsnummer, e-post och mobilnummer skyddas både i service-lagret och med unika index i databasen.
+Varje medlem har ett unikt medlemsnummer som fungerar som medlems-id. Unika fält för medlemsnummer, e-post och mobilnummer skyddas både i service-lagret och med unika index i databasen.
 
 ## Designval
 

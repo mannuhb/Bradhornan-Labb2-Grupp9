@@ -15,6 +15,7 @@ namespace ObjektLab1.ViewModels
         private SpelTraff? _valdTraff;
         private string _statusText = "Redo.";
         private string _nyMedlemNamn = string.Empty;
+        private string _nyMedlemEfternamn = string.Empty;
         private string _nyMedlemEpost = string.Empty;
         private string _nyMedlemMobilnummer = string.Empty;
         private string _nyMedlemRoll = "Spelare";
@@ -124,6 +125,12 @@ namespace ObjektLab1.ViewModels
         {
             get => _nyMedlemNamn;
             set => SetProperty(ref _nyMedlemNamn, value);
+        }
+
+        public string NyMedlemEfternamn
+        {
+            get => _nyMedlemEfternamn;
+            set => SetProperty(ref _nyMedlemEfternamn, value);
         }
 
         public string NyMedlemEpost
@@ -245,8 +252,9 @@ namespace ObjektLab1.ViewModels
         {
             await HanteraFelAsync(async () =>
             {
-                await _service.RegistreraMedlemAsync(NyMedlemNamn, NyMedlemEpost, NyMedlemMobilnummer, NyMedlemRoll);
+                await _service.RegistreraMedlemAsync(NyMedlemNamn, NyMedlemEfternamn, NyMedlemEpost, NyMedlemMobilnummer, NyMedlemRoll);
                 NyMedlemNamn = string.Empty;
+                NyMedlemEfternamn = string.Empty;
                 NyMedlemEpost = string.Empty;
                 NyMedlemMobilnummer = string.Empty;
                 NyMedlemRoll = "Spelare";
@@ -289,6 +297,7 @@ namespace ObjektLab1.ViewModels
             var aktiva = (await _service.HamtaMedlemmarAsync())
                 .Where(m => !m.ArSparrad)
                 .OrderBy(m => m.Namn)
+                .ThenBy(m => m.Efternamn)
                 .ToList();
 
             FyllSamling(Medlemmar, aktiva);
@@ -299,6 +308,7 @@ namespace ObjektLab1.ViewModels
         {
             var sorterade = (await _service.HamtaMedlemmarAsync())
                 .OrderBy(m => m.Namn)
+                .ThenBy(m => m.Efternamn)
                 .ToList();
 
             FyllSamling(Medlemmar, sorterade);
@@ -418,7 +428,7 @@ namespace ObjektLab1.ViewModels
             if (ValdTraff == null)
                 return;
 
-            foreach (var medlem in ValdTraff.Deltagare.OrderBy(m => m.Namn))
+            foreach (var medlem in ValdTraff.Deltagare.OrderBy(m => m.Namn).ThenBy(m => m.Efternamn))
                 Deltagare.Add(medlem);
         }
 

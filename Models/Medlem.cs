@@ -8,6 +8,7 @@ namespace ObjektLab1.Models
         public int Id { get; private set; }
         public int Medlemsnummer { get; private set; }
         public string Namn { get; private set; } = string.Empty;
+        public string Efternamn { get; private set; } = string.Empty;
         public string Epost { get; private set; } = string.Empty;
         public string Mobilnummer { get; private set; } = string.Empty;
         public string Roll { get; private set; } = "Spelare";
@@ -18,16 +19,18 @@ namespace ObjektLab1.Models
         {
         }
 
-        public Medlem(int medlemsnummer, string namn, string epost, string mobilnummer, string roll)
+        public Medlem(int medlemsnummer, string namn, string efternamn, string epost, string mobilnummer, string roll)
         {
             ValideraMedlemsnummer(medlemsnummer);
             ValideraNamn(namn);
+            ValideraEfternamn(efternamn);
             ValideraEpost(epost);
             ValideraMobilnummer(mobilnummer);
             ValideraRoll(roll);
 
             Medlemsnummer = medlemsnummer;
             Namn = namn.Trim();
+            Efternamn = efternamn.Trim();
             Epost = epost.Trim();
             Mobilnummer = mobilnummer.Trim();
             Roll = roll.Trim();
@@ -39,14 +42,16 @@ namespace ObjektLab1.Models
             return !ArSparrad;
         }
 
-        public void UppdateraKontaktuppgifter(string namn, string epost, string mobilnummer, string roll)
+        public void UppdateraKontaktuppgifter(string namn, string efternamn, string epost, string mobilnummer, string roll)
         {
             ValideraNamn(namn);
+            ValideraEfternamn(efternamn);
             ValideraEpost(epost);
             ValideraMobilnummer(mobilnummer);
             ValideraRoll(roll);
 
             Namn = namn.Trim();
+            Efternamn = efternamn.Trim();
             Epost = epost.Trim();
             Mobilnummer = mobilnummer.Trim();
             Roll = roll.Trim();
@@ -65,7 +70,7 @@ namespace ObjektLab1.Models
         public override string ToString()
         {
             var status = ArSparrad ? " (SPÄRRAD)" : string.Empty;
-            return $"{Medlemsnummer} - {Namn} - {Epost} - {Mobilnummer} - {Roll}{status}";
+            return $"{Medlemsnummer} - {Namn} {Efternamn} - {Epost} - {Mobilnummer} - {Roll}{status}";
         }
 
         private static void ValideraMedlemsnummer(int medlemsnummer)
@@ -78,6 +83,12 @@ namespace ObjektLab1.Models
         {
             if (string.IsNullOrWhiteSpace(namn))
                 throw new ArgumentException("Namn måste anges.");
+        }
+
+        private static void ValideraEfternamn(string efternamn)
+        {
+            if (string.IsNullOrWhiteSpace(efternamn))
+                throw new ArgumentException("Efternamn måste anges.");
         }
 
         private static void ValideraEpost(string epost)

@@ -119,9 +119,13 @@
                          ItemTemplate="{StaticResource MedlemTemplate}"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-                <TextBlock Text="Namn på ny medlem" Margin="0,10,0,5"/>
+                <TextBlock Text="Förnamn på ny medlem" Margin="0,10,0,5"/>
                 <TextBox Height="26"
                          Text="{Binding NyMedlemNamn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="Efternamn" Margin="0,6,0,5"/>
+                <TextBox Height="26"
+                         Text="{Binding NyMedlemEfternamn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="E-post" Margin="0,6,0,5"/>
                 <TextBox Height="26"

@@ -23,10 +23,10 @@
     <text x="14" y="70" class="text">+ Id: int</text>
     <text x="14" y="95" class="text">+ Medlemsnummer: int</text>
     <text x="14" y="120" class="text">+ Namn: string</text>
-    <text x="14" y="145" class="text">+ Epost: string</text>
-    <text x="14" y="170" class="text">+ Mobilnummer: string</text>
-    <text x="14" y="195" class="text">+ Roll: string</text>
-    <text x="14" y="220" class="text">+ ArSparrad: bool</text>
+    <text x="14" y="145" class="text">+ Efternamn: string</text>
+    <text x="14" y="170" class="text">+ Epost: string</text>
+    <text x="14" y="195" class="text">+ Mobilnummer: string</text>
+    <text x="14" y="220" class="text">+ Roll: string</text>
     <line x1="0" y1="232" x2="260" y2="232" stroke="#222"/>
     <text x="14" y="255" class="small">+ Sparra()</text>
     <text x="120" y="255" class="small">+ Avsparra()</text>

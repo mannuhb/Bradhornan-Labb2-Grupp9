@@ -63,7 +63,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 ## Affärsregler
 
 - Medlemsnummer måste vara större än 0.
-- Namn, e-post, mobilnummer, titel, kategori, plats och träffnamn får inte vara tomma.
+- Förnamn, efternamn, e-post, mobilnummer, titel, kategori, plats och träffnamn får inte vara tomma.
 - Medlemsnummer, e-postadress och mobilnummer måste vara unika.
 - Maxantal spelare eller deltagare får inte vara mindre än minantal.
 - En spelträff måste följa valt spels min- och maxantal spelare.
@@ -87,7 +87,7 @@ Databasen skapas automatiskt med `EnsureCreatedAsync()` när applikationen start
 
 ## Inkapsling och arv
 
-`Medlem` är en central klass i domänmodellen. Klassens viktiga data har privata setters och ändras via metoder som `Sparra`, `Avsparra` och `UppdateraKontaktuppgifter`. Detta minskar risken för att objekt manipuleras direkt utifrån utan att affärsregler kontrolleras.
+`Medlem` är en central klass i domänmodellen. Varje medlem får ett unikt medlemsnummer som fungerar som medlems-id. Klassens viktiga data har privata setters och ändras via metoder som `Sparra`, `Avsparra` och `UppdateraKontaktuppgifter`. Detta minskar risken för att objekt manipuleras direkt utifrån utan att affärsregler kontrolleras.
 
 Alla medlemmar är vanliga medlemmar, men de kan ha olika roller, till exempel `Spelare`, `Arrangör` eller `Administratör`.
 
