@@ -185,8 +185,8 @@
   <!-- Inheritance and dependency relations -->
   <path class="inherit" d="M235 800 V740"/>
   <g transform="translate(258 752)">
-    <rect class="labelBox" width="52" height="32" rx="4"/>
-    <text class="small" x="12" y="21">arv</text>
+    <rect class="labelBox" width="178" height="32" rx="4"/>
+    <text class="small" x="12" y="21">MainViewModel : ViewModelBase</text>
   </g>
 
   <path class="useLine" d="M410 902 H500 V1068 H560"/>
